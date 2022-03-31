@@ -353,4 +353,5 @@ public class WeatherAPI {
     public void setCurrent(Current current) {
         this.current = current;
     }
+
 }

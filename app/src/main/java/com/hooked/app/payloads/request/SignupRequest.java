@@ -6,7 +6,7 @@ public class SignupRequest {
 
     private String username;
     private String password;
-    private Set<String> roles;
+    private final Set<String> roles;
 
     public SignupRequest(String username, String password, Set<String> roles) {
         this.username = username;

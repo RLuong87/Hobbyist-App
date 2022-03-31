@@ -44,14 +44,6 @@ public class CustomerController {
         return repository.save(customer);
     }
 
-//    @PutMapping("/vehicle")
-//    public Customer addCar(@RequestBody Customer updates) {
-//        Customer customer = repository.findById(updates.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-//
-//        customer.vehicles.addAll(updates.vehicles);
-//        return repository.save(customer);
-//    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCustomer(@PathVariable Long id) {
         repository.deleteById(id);

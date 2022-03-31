@@ -5,6 +5,7 @@ import com.hooked.app.payloads.api.response.WeatherResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,29 @@ public class TestController {
 
     @Value("${hooked.app.weatherApiKey}")
     private String apiKey;
+
+    @GetMapping("/all")
+    public String allAccess() {
+        return "public content";
+    }
+
+    @GetMapping("/user")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public String userAccess() {
+        return "User content";
+    }
+
+    @GetMapping("/mod")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    public String modAccess() {
+        return "Mod content";
+    }
+
+    @GetMapping("/admin")
+    @PreAuthorize("hasRole('ADMIN')")
+    public String adminAccess() {
+        return "admin content";
+    }
 
     @GetMapping("/weathertest")
     public String weatherTest() {
@@ -44,9 +68,8 @@ public class TestController {
 
         WeatherAPI response = restTemplate.getForObject(uri, WeatherAPI.class);
 
-        return ResponseEntity.ok(response.getCurrent());
+        return ResponseEntity.ok(response);
     }
-
 
     @GetMapping("/forecastv4/{name}")
     public Object getWeatherForecastV4(@PathVariable String name) {

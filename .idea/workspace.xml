@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60f9e1f6-f004-4218-91d7-a44fd389fc7f" name="Changes" comment="" />
+    <list default="true" id="60f9e1f6-f004-4218-91d7-a44fd389fc7f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/UserStatusController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/models/UserStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/api/response/TideAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/repositories/UserStatusRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/api/response/WeatherAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/api/response/WeatherAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/request/SignupRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/request/SignupRequest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,15 +49,19 @@
       <list>
         <option value="Enum" />
         <option value="AnnotationType" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="26nx9Gc8BuyhOZLw3SUOXeBth6D" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -53,6 +69,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
@@ -102,5 +119,16 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="application.properties" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
