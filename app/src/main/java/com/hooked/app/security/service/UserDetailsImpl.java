@@ -73,7 +73,6 @@ public class UserDetailsImpl implements UserDetails {
         return true;
     }
 
-
     @Override
     public String getPassword() {
         return password;
