@@ -3,7 +3,6 @@ package com.hooked.app.controllers;
 import com.hooked.app.models.Customer;
 import com.hooked.app.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +33,7 @@ public class CustomerController {
     }
 
     @PutMapping("/{id}")
-    public @ResponseBody
-    Customer updateCustomer(@PathVariable Long id, @RequestBody Customer updates) {
+    public @ResponseBody Customer updateCustomer(@PathVariable Long id, @RequestBody Customer updates) {
         Customer customer = repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         if (updates.getName() != null) customer.setName(updates.getName());

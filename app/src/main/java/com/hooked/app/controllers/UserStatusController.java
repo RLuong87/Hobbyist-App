@@ -1,6 +1,5 @@
 package com.hooked.app.controllers;
 
-
 import com.hooked.app.models.UserStatus;
 import com.hooked.app.repositories.UserStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
