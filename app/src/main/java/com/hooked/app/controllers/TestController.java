@@ -1,15 +1,13 @@
 package com.hooked.app.controllers;
 
+import com.hooked.app.payloads.api.response.StormGlass;
 import com.hooked.app.payloads.api.response.WeatherAPI;
 import com.hooked.app.payloads.api.response.WeatherResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
@@ -20,7 +18,10 @@ public class TestController {
     private RestTemplate restTemplate;
 
     @Value("${hooked.app.weatherApiKey}")
-    private String apiKey;
+    private String weatherApiKey;
+
+    @Value("${hooked.app.stormGlassKey}")
+    private String stormKey;
 
     @GetMapping("/all")
     public String allAccess() {
@@ -54,7 +55,7 @@ public class TestController {
     public ResponseEntity<?> getForecast() {
 
         String LOCATION = "Cranston";
-        String uri = "https://api.openweathermap.org/data/2.5/weather?q=" + LOCATION + "&appid=" + apiKey;
+        String uri = "https://api.openweathermap.org/data/2.5/weather?q=" + LOCATION + "&appid=" + weatherApiKey;
 
         WeatherAPI forecast = restTemplate.getForObject(uri, WeatherAPI.class);
 
@@ -64,20 +65,22 @@ public class TestController {
     @GetMapping("/forecast/{name}")
     public ResponseEntity<?> getWeatherForecast(@PathVariable String name) {
 
-        String uri = "http://api.weatherapi.com/v1/current.json?key=" + apiKey + "&q=" + name + "&aqi=no";
+        String uri = "http://api.weatherapi.com/v1/current.json?key=" + weatherApiKey + "&q=" + name + "&aqi=no";
 
         WeatherAPI response = restTemplate.getForObject(uri, WeatherAPI.class);
 
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/forecastv4/{name}")
-    public Object getWeatherForecastV4(@PathVariable String name) {
+    @GetMapping("/forecastv4")
+    public Object getWeatherForecastV4(@RequestParam String lat,
+                                       @RequestParam String lng,
+                                       @RequestParam String params) {
 
-        String uri = "http://api.weatherapi.com/v1/current.json?key=" + apiKey + "&q=" + name + "&aqi=no";
+        String uri = "https://api.stormglass.io/v2/weather/point";
 
-        WeatherResponse response = restTemplate.getForObject(uri, WeatherResponse.class);
+        StormGlass response = restTemplate.getForObject(uri, StormGlass.class);
 
-        return ResponseEntity.ok(response.getWeatherApi());
+        return ResponseEntity.ok(response);
     }
 }

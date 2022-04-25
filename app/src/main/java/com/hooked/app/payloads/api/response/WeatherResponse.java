@@ -7,16 +7,16 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WeatherResponse {
 
-    private List<WeatherAPI> weatherApi;
+    private List<StormGlass> weatherApi;
 
     public WeatherResponse() {
     }
 
-    public List<WeatherAPI> getWeatherApi() {
+    public List<StormGlass> getWeatherApi() {
         return weatherApi;
     }
 
-    public void setWeatherApi(List<WeatherAPI> weatherApi) {
+    public void setWeatherApi(List<StormGlass> weatherApi) {
         this.weatherApi = weatherApi;
     }
 }

@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60f9e1f6-f004-4218-91d7-a44fd389fc7f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/api/response/StormGlass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/AppApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/AppApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/UserStatusController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/UserStatusController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/models/auth/ERole.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/models/auth/ERole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/repositories/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/repositories/RoleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/api/response/WeatherResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/api/response/WeatherResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,13 +43,23 @@
       <list>
         <option value="Enum" />
         <option value="AnnotationType" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/app/src/main/java/com/hooked/app/security/WebSecurityConfig.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/TestController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/src/main/resources/application.properties" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/src/main/java/com/hooked/app/security/jwt/AuthTokenFilter.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/src/main/java/com/hooked/app/security/jwt/AuthEntryPointJwt.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/api/response/WeatherResponse.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/api/response/WeatherAPI.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/api/response/StormGlass.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -65,8 +74,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../hotel" />
-    <property name="settings.editor.selected.configurable" value="preferences.general" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../BitcoinProcessor" />
+    <property name="settings.editor.selected.configurable" value="RainbowCSV.Settings" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
