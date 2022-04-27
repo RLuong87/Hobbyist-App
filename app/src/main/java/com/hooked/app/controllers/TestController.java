@@ -2,7 +2,6 @@ package com.hooked.app.controllers;
 
 import com.hooked.app.payloads.api.response.StormGlass;
 import com.hooked.app.payloads.api.response.WeatherAPI;
-import com.hooked.app.payloads.api.response.WeatherResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -73,9 +72,9 @@ public class TestController {
     }
 
     @GetMapping("/forecastv4")
-    public Object getWeatherForecastV4(@RequestParam String lat,
-                                       @RequestParam String lng,
-                                       @RequestParam String params) {
+    public ResponseEntity<StormGlass> getWeatherForecastV4(@RequestParam String lat,
+                                                           @RequestParam String lng,
+                                                           @RequestParam String params) {
 
         String uri = "https://api.stormglass.io/v2/weather/point";
 

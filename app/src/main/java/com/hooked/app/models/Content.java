@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import javax.persistence.*;
 
 @Entity
-public class UserStatus {
+public class Content {
     @Id
     @GeneratedValue
     private Long id;
@@ -13,14 +13,14 @@ public class UserStatus {
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     @JsonIncludeProperties({"name", "email"})
     private Customer customer;
-    private String status;
+    private String content;
 
-    public UserStatus() {
+    public Content() {
     }
 
-    public UserStatus(Customer customer, String status) {
+    public Content(Customer customer, String content) {
         this.customer = customer;
-        this.status = status;
+        this.content = content;
     }
 
     public Long getId() {
@@ -39,11 +39,11 @@ public class UserStatus {
         this.customer = customer;
     }
 
-    public String getStatus() {
-        return status;
+    public String getContent() {
+        return content;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setContent(String content) {
+        this.content = content;
     }
 }

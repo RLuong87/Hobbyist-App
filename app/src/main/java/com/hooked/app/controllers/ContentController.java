@@ -1,7 +1,7 @@
 package com.hooked.app.controllers;
 
-import com.hooked.app.models.UserStatus;
-import com.hooked.app.repositories.UserStatusRepository;
+import com.hooked.app.models.Content;
+import com.hooked.app.repositories.ContentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,29 +12,28 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/status")
-public class UserStatusController {
+@RequestMapping("/content")
+public class ContentController {
 
     @Autowired
-    private UserStatusRepository repository;
+    private ContentRepository repository;
 
     @GetMapping
-    public ResponseEntity<Iterable<UserStatus>> getAll() {
+    public ResponseEntity<Iterable<Content>> getAll() {
         return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<UserStatus> createOne(@RequestBody UserStatus status) {
-        System.out.println(status.getCustomer().getId());
-
-        return new ResponseEntity<>(repository.save(status), HttpStatus.CREATED);
+    public ResponseEntity<Content> createOne(@RequestBody Content content) {
+        return new ResponseEntity<>(repository.save(content), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public @ResponseBody UserStatus updateStatus(@PathVariable Long id, @RequestBody UserStatus updates) {
-        UserStatus status = repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    public @ResponseBody
+    Content updateContent(@PathVariable Long id, @RequestBody Content updates) {
+        Content status = repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        if (updates.getStatus() != null) status.setStatus(updates.getStatus());
+        if (updates.getContent() != null) status.setContent(updates.getContent());
 
         return repository.save(status);
     }
@@ -46,7 +45,7 @@ public class UserStatusController {
     }
 
     @GetMapping("/customer/{cId}")
-    public ResponseEntity<List<UserStatus>> getByCustomerId(@PathVariable Long cId) {
+    public ResponseEntity<List<Content>> getByCustomerId(@PathVariable Long cId) {
         return new ResponseEntity<>(repository.findAllByCustomer_id(cId), HttpStatus.OK);
     }
 }

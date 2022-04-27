@@ -6,6 +6,7 @@ public class StormGlass {
     private WaveHeight waveHeight;
 
     private class AirTemperature {
+
         private float dwd;
         private float noaa;
         private float sg;
@@ -47,6 +48,7 @@ public class StormGlass {
     private String time;
 
     private class WaveHeight {
+
         private float dwd;
         private float icon;
         private float meteo;
