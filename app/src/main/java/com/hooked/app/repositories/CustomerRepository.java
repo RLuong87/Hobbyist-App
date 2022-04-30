@@ -3,8 +3,9 @@ package com.hooked.app.repositories;
 import com.hooked.app.models.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CustomerRepository extends JpaRepository<Customer, Long> {
+import java.util.Optional;
 
-//    Customer findByUser_id(Long id);
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
+    Optional<Customer> findByUser_id(Long id);
 
 }

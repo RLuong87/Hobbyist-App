@@ -8,16 +8,25 @@ import javax.persistence.*;
 public class Profile {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    @JsonIncludeProperties({"name"})
-    private Customer customer;
     private String about;
     private String headline;
     private String location;
     private String birthday;
+
+    @OneToOne
+    @JoinColumn(name = "profile_id", referencedColumnName = "id")
+    @JsonIncludeProperties({"name"})
+    private Customer customer;
+
+    public Profile(String about, String headline, String location, String birthday, Customer customer) {
+        this.about = about;
+        this.headline = headline;
+        this.location = location;
+        this.birthday = birthday;
+        this.customer = customer;
+    }
 
     public Profile(Long id) {
         this.id = id;

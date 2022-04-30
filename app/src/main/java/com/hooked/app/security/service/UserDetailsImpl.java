@@ -1,7 +1,7 @@
 package com.hooked.app.security.service;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hooked.app.models.auth.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,7 +15,7 @@ public class UserDetailsImpl implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private final Long id;
 
     private String username;
 

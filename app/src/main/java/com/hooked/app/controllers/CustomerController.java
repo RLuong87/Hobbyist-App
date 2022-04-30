@@ -1,10 +1,15 @@
 package com.hooked.app.controllers;
 
+import com.hooked.app.models.auth.User;
 import com.hooked.app.models.Customer;
 import com.hooked.app.repositories.CustomerRepository;
+import com.hooked.app.repositories.UserRepository;
+import com.hooked.app.security.service.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
@@ -15,10 +20,13 @@ import java.util.List;
 public class CustomerController {
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private CustomerRepository repository;
 
     @GetMapping
-    public ResponseEntity<List<Customer>> getAllCustomers() {
+    public @ResponseBody ResponseEntity<List<Customer>> getAllCustomers() {
         return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
     }
 
@@ -28,18 +36,31 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) {
+    public @ResponseBody ResponseEntity<Customer> postNewCustomer(@RequestBody Customer newCustomer) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+        User currentUser = userRepository.findById(userDetails.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        newCustomer.setUser(currentUser);
+
         return new ResponseEntity<>(repository.save(newCustomer), HttpStatus.CREATED);
     }
 
+//    @PostMapping
+//    public ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) {
+//        return new ResponseEntity<>(repository.save(newCustomer), HttpStatus.CREATED);
+//    }
+
     @PutMapping("/{id}")
-    public @ResponseBody Customer updateCustomer(@PathVariable Long id, @RequestBody Customer updates) {
+    public @ResponseBody ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Customer updates) {
         Customer customer = repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         if (updates.getName() != null) customer.setName(updates.getName());
-        if (updates.getEmail() != null) customer.setEmail(updates.getEmail());
+        if (updates.getProfile() != null) customer.setProfile(updates.getProfile());
+        if (updates.getContent() != null) customer.setContent(updates.getContent());
 
-        return repository.save(customer);
+        return new ResponseEntity<>(repository.save(customer), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
