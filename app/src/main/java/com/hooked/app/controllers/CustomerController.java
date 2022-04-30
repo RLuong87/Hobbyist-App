@@ -23,20 +23,20 @@ public class CustomerController {
     private UserRepository userRepository;
 
     @Autowired
-    private CustomerRepository repository;
+    private CustomerRepository customerRepository;
 
     @GetMapping
-    public @ResponseBody ResponseEntity<List<Customer>> getAllCustomers() {
-        return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<Customer>> getAllCustomers() {
+        return new ResponseEntity<>(customerRepository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public @ResponseBody Customer getCustomer(@PathVariable Long id) {
-        return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return customerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
-    public @ResponseBody ResponseEntity<Customer> postNewCustomer(@RequestBody Customer newCustomer) {
+    public ResponseEntity<Customer> postNewCustomer(@RequestBody Customer newCustomer) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
@@ -44,28 +44,23 @@ public class CustomerController {
 
         newCustomer.setUser(currentUser);
 
-        return new ResponseEntity<>(repository.save(newCustomer), HttpStatus.CREATED);
+        return new ResponseEntity<>(customerRepository.save(newCustomer), HttpStatus.CREATED);
     }
-
-//    @PostMapping
-//    public ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) {
-//        return new ResponseEntity<>(repository.save(newCustomer), HttpStatus.CREATED);
-//    }
 
     @PutMapping("/{id}")
     public @ResponseBody ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Customer updates) {
-        Customer customer = repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         if (updates.getName() != null) customer.setName(updates.getName());
-        if (updates.getProfile() != null) customer.setProfile(updates.getProfile());
-        if (updates.getContent() != null) customer.setContent(updates.getContent());
+//        if (updates.getProfile() != null) customer.setProfile(updates.getProfile());
+//        if (updates.getContent() != null) customer.setContent(updates.getContent());
 
-        return new ResponseEntity<>(repository.save(customer), HttpStatus.OK);
+        return new ResponseEntity<>(customerRepository.save(customer), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCustomer(@PathVariable Long id) {
-        repository.deleteById(id);
+        customerRepository.deleteById(id);
         return new ResponseEntity<>("Deleted", HttpStatus.OK);
     }
 }

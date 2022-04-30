@@ -1,12 +1,16 @@
 package com.hooked.app.models.auth;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.hooked.app.models.Content;
+import com.hooked.app.models.Customer;
+import com.hooked.app.models.Profile;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -36,6 +40,15 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new HashSet<>();
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
+    private Customer customer;
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
+    private Profile profile;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private Set<Content> content;
 
     public User() {
     }
@@ -75,5 +88,29 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+    public Set<Content> getContent() {
+        return content;
+    }
+
+    public void setContent(Set<Content> content) {
+        this.content = content;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

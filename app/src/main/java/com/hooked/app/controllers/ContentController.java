@@ -5,6 +5,7 @@ import com.hooked.app.models.Customer;
 import com.hooked.app.models.auth.User;
 import com.hooked.app.repositories.ContentRepository;
 import com.hooked.app.repositories.CustomerRepository;
+import com.hooked.app.repositories.UserRepository;
 import com.hooked.app.security.service.UserDetailsImpl;
 import com.hooked.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class ContentController {
     private ContentRepository contentRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private CustomerRepository customerRepository;
 
     @Autowired
@@ -38,13 +42,7 @@ public class ContentController {
     }
 
 //    @PostMapping
-//    public @ResponseBody ResponseEntity<Customer> postNewCustomer(@RequestBody Content content) {
-//
-//        return new ResponseEntity<>(contentRepository.save(content), HttpStatus.CREATED);
-//    }
-
-//    @PostMapping
-//    public ResponseEntity<Content> createOne(@RequestBody Content content) {
+//    public @ResponseBody ResponseEntity<Content> postNewCustomer(@RequestBody Content content) {
 //
 //        return new ResponseEntity<>(contentRepository.save(content), HttpStatus.CREATED);
 //    }

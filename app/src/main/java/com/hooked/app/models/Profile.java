@@ -1,6 +1,7 @@
 package com.hooked.app.models;
 
 import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+import com.hooked.app.models.auth.User;
 
 import javax.persistence.*;
 
@@ -19,6 +20,9 @@ public class Profile {
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
     @JsonIncludeProperties({"name"})
     private Customer customer;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private User user;
 
     public Profile(String about, String headline, String location, String birthday, Customer customer) {
         this.about = about;
@@ -79,4 +83,6 @@ public class Profile {
     public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
+
+
 }
