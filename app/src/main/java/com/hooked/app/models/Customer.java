@@ -6,28 +6,31 @@ import com.hooked.app.models.auth.User;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Customer {
 
     @Id
     @GeneratedValue
     private Long id;
-    private String name;
-    private String email;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "customer")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Profile profile;
+    @OneToOne
+    private Avatar avatar;
+
+    private String name;
+    private String status;
+    private String birthday;
+    private String location;
+    private String jobTitle;
+    private String employer;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     private List<Content> content;
 
     @OneToOne
-    @JoinColumn(
-            name = "users_id",
-            referencedColumnName = "id"
-    )
+    @JoinColumn(name = "users_id", referencedColumnName = "id")
     @JsonIgnore
     private User user;
 
@@ -35,10 +38,14 @@ public class Customer {
 
     }
 
-    public Customer(String name, String email, Profile profile, List<Content> content, User user) {
+    public Customer(Avatar avatar, String name, String status, String birthday, String location, String jobTitle, String employer, List<Content> content, User user) {
+        this.avatar = avatar;
         this.name = name;
-        this.email = email;
-        this.profile = profile;
+        this.status = status;
+        this.birthday = birthday;
+        this.location = location;
+        this.jobTitle = jobTitle;
+        this.employer = employer;
         this.content = content;
         this.user = user;
     }
@@ -67,27 +74,59 @@ public class Customer {
         this.content = content;
     }
 
-    public Profile getProfile() {
-        return profile;
-    }
-
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Avatar getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Avatar avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
+    public String getEmployer() {
+        return employer;
+    }
+
+    public void setEmployer(String employer) {
+        this.employer = employer;
     }
 }

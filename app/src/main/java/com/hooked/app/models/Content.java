@@ -1,7 +1,6 @@
 package com.hooked.app.models;
 
-import com.fasterxml.jackson.annotation.JsonIncludeProperties;
-import com.hooked.app.models.auth.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -11,15 +10,14 @@ public class Content {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    @JsonIncludeProperties({"id"})
-    private Customer customer;
-    private String title;
-    private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    @JsonIgnore
+    private Customer customer;
+
+    private String title;
+    private String content;
 
     public Content() {
     }
@@ -60,13 +58,4 @@ public class Content {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-
-        public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
 }

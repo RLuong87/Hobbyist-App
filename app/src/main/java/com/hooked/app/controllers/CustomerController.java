@@ -52,8 +52,11 @@ public class CustomerController {
         Customer customer = customerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         if (updates.getName() != null) customer.setName(updates.getName());
-//        if (updates.getProfile() != null) customer.setProfile(updates.getProfile());
-//        if (updates.getContent() != null) customer.setContent(updates.getContent());
+        if (updates.getStatus() != null) customer.setStatus(updates.getStatus());
+        if (updates.getBirthday() != null) customer.setBirthday(updates.getBirthday());
+        if (updates.getLocation() != null) customer.setLocation(updates.getLocation());
+        if (updates.getJobTitle() != null) customer.setJobTitle(updates.getJobTitle());
+        if (updates.getEmployer() != null) customer.setEmployer(updates.getEmployer());
 
         return new ResponseEntity<>(customerRepository.save(customer), HttpStatus.OK);
     }

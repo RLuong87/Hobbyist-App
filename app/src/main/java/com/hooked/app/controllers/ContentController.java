@@ -41,12 +41,6 @@ public class ContentController {
         return new ResponseEntity<>(contentRepository.findAll(), HttpStatus.OK);
     }
 
-//    @PostMapping
-//    public @ResponseBody ResponseEntity<Content> postNewCustomer(@RequestBody Content content) {
-//
-//        return new ResponseEntity<>(contentRepository.save(content), HttpStatus.CREATED);
-//    }
-
     @PostMapping
     public ResponseEntity<Content> createOne(@RequestBody Content content) {
         User currentUser = userService.getCurrentUser();
@@ -54,7 +48,6 @@ public class ContentController {
         if (currentUser == null) {
             return null;
         }
-//        System.out.println(content.getCustomer().getId());
         Customer currentCustomer = customerRepository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         content.setCustomer(currentCustomer);
 

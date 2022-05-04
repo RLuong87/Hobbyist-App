@@ -1,24 +1,22 @@
 package com.hooked.app.models.auth;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.hooked.app.models.Content;
 import com.hooked.app.models.Customer;
-import com.hooked.app.models.Profile;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "users",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "username")
-        }
-)
+        })
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,13 +40,8 @@ public class User {
     private Set<Role> roles = new HashSet<>();
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
+    @JsonIgnore
     private Customer customer;
-
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
-    private Profile profile;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private Set<Content> content;
 
     public User() {
     }
@@ -88,22 +81,6 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-
-    public Profile getProfile() {
-        return profile;
-    }
-
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
-
-    public Set<Content> getContent() {
-        return content;
-    }
-
-    public void setContent(Set<Content> content) {
-        this.content = content;
     }
 
     public Customer getCustomer() {
