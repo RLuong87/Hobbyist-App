@@ -6,7 +6,6 @@ import com.hooked.app.models.auth.User;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @JsonInclude(JsonInclude.Include.NON_NULL)
