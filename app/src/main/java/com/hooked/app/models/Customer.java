@@ -14,19 +14,16 @@ public class Customer {
     @Id
     @GeneratedValue
     private Long id;
-
-    @OneToOne
-    private Avatar avatar;
-
     private String name;
     private String status;
     private String birthday;
     private String location;
-    private String jobTitle;
-    private String employer;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     private List<Content> content;
+
+    @OneToOne
+    private Avatar avatar;
 
     @OneToOne
     @JoinColumn(name = "users_id", referencedColumnName = "id")
@@ -37,16 +34,11 @@ public class Customer {
 
     }
 
-    public Customer(Avatar avatar, String name, String status, String birthday, String location, String jobTitle, String employer, List<Content> content, User user) {
-        this.avatar = avatar;
+    public Customer(String name, String status, String birthday, String location, String jobTitle, String employer, List<Content> content, User user) {
         this.name = name;
         this.status = status;
         this.birthday = birthday;
         this.location = location;
-        this.jobTitle = jobTitle;
-        this.employer = employer;
-        this.content = content;
-        this.user = user;
     }
 
     public Long getId() {
@@ -111,21 +103,5 @@ public class Customer {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public String getJobTitle() {
-        return jobTitle;
-    }
-
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
-
-    public String getEmployer() {
-        return employer;
-    }
-
-    public void setEmployer(String employer) {
-        this.employer = employer;
     }
 }
