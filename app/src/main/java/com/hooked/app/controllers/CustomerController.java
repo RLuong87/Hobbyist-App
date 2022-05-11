@@ -58,12 +58,13 @@ public class CustomerController {
         if (updates.getStatus() != null) updates.setStatus(updates.getStatus());
         if (updates.getBirthday() != null) updates.setBirthday(updates.getBirthday());
         if (updates.getLocation() != null) updates.setLocation(updates.getLocation());
+        if (updates.getAbout() != null) updates.setAbout(updates.getAbout());
 
         return new ResponseEntity<>(customerRepository.save(updates), HttpStatus.OK);
     }
 
 //    @PutMapping
-//    public @ResponseBody Customer updateCustomer(@RequestBody Customer updates) {
+//    public @ResponseBody ResponseEntity<Customer> updateCustomer(@RequestBody Customer updates) {
 //        User currentUser = userService.getCurrentUser();
 //
 //        if (currentUser == null) {
@@ -75,21 +76,23 @@ public class CustomerController {
 //        if (updates.getStatus() != null) customer.setStatus(updates.getStatus());
 //        if (updates.getBirthday() != null) customer.setBirthday(updates.getBirthday());
 //        if (updates.getLocation() != null) customer.setLocation(updates.getLocation());
+//        if (updates.getAbout() != null) updates.setAbout(updates.getAbout());
 //
-//        return customerRepository.save(customer);
+//        return new ResponseEntity<>(customerRepository.save(updates), HttpStatus.OK);
 //    }
 
-//    @PutMapping("/{id}")
-//    public @ResponseBody ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Customer updates) {
-//        Customer customer = customerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-//
-//        if (updates.getName() != null) customer.setName(updates.getName());
-//        if (updates.getStatus() != null) customer.setStatus(updates.getStatus());
-//        if (updates.getBirthday() != null) customer.setBirthday(updates.getBirthday());
-//        if (updates.getLocation() != null) customer.setLocation(updates.getLocation());
-//
-//        return new ResponseEntity<>(customerRepository.save(customer), HttpStatus.OK);
-//    }
+    @PutMapping("/{id}")
+    public @ResponseBody ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Customer updates) {
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        if (updates.getName() != null) customer.setName(updates.getName());
+        if (updates.getStatus() != null) customer.setStatus(updates.getStatus());
+        if (updates.getBirthday() != null) customer.setBirthday(updates.getBirthday());
+        if (updates.getLocation() != null) customer.setLocation(updates.getLocation());
+        if (updates.getAbout() != null) updates.setAbout(updates.getAbout());
+
+        return new ResponseEntity<>(customerRepository.save(customer), HttpStatus.OK);
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCustomer(@PathVariable Long id) {

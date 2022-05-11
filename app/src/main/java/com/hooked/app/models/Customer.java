@@ -18,6 +18,7 @@ public class Customer {
     private String status;
     private String birthday;
     private String location;
+    private String about;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     private List<Content> content;
@@ -34,11 +35,12 @@ public class Customer {
 
     }
 
-    public Customer(String name, String status, String birthday, String location, String jobTitle, String employer, List<Content> content, User user) {
+    public Customer(String name, String status, String birthday, String location, String about) {
         this.name = name;
         this.status = status;
         this.birthday = birthday;
         this.location = location;
+        this.about = about;
     }
 
     public Long getId() {
@@ -103,5 +105,13 @@ public class Customer {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
     }
 }
