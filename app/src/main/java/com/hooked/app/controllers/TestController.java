@@ -4,14 +4,17 @@ import com.hooked.app.models.Customer;
 import com.hooked.app.models.auth.User;
 import com.hooked.app.payloads.api.response.StormGlass;
 import com.hooked.app.payloads.api.response.WeatherAPI;
+import com.hooked.app.repositories.CustomerRepository;
 import com.hooked.app.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -25,6 +28,9 @@ public class TestController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
     @Value("${hooked.app.weatherApiKey}")
     private String weatherApiKey;
@@ -64,6 +70,13 @@ public class TestController {
     public ResponseEntity<List<User>> getAllUsers() {
         return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
     }
+
+//    @GetMapping("/{name}")
+//    public ResponseEntity<Customer> getUserByUsername(@PathVariable String name) {
+//        Customer customer = customerRepository.findByName(name).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+//
+//        return new ResponseEntity<>(customerRepository.save(customer), HttpStatus.OK);
+//    }
 
     @GetMapping("/forecast")
     public ResponseEntity<?> getForecast() {
