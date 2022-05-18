@@ -1,19 +1,15 @@
 package com.hooked.app.controllers;
 
-import com.hooked.app.models.Content;
-import com.hooked.app.models.Customer;
+import com.hooked.app.models.content.Content;
+import com.hooked.app.models.angler.Angler;
 import com.hooked.app.models.auth.User;
 import com.hooked.app.repositories.ContentRepository;
-import com.hooked.app.repositories.CustomerRepository;
+import com.hooked.app.repositories.AnglerRepository;
 import com.hooked.app.repositories.UserRepository;
-import com.hooked.app.security.service.UserDetailsImpl;
 import com.hooked.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -31,7 +27,7 @@ public class ContentController {
     private UserRepository userRepository;
 
     @Autowired
-    private CustomerRepository customerRepository;
+    private AnglerRepository anglerRepository;
 
     @Autowired
     private UserService userService;
@@ -48,8 +44,8 @@ public class ContentController {
         if (currentUser == null) {
             return null;
         }
-        Customer currentCustomer = customerRepository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        content.setCustomer(currentCustomer);
+        Angler currentAngler = anglerRepository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        content.setCustomer(currentAngler);
 
         return new ResponseEntity<>(contentRepository.save(content), HttpStatus.CREATED);
     }

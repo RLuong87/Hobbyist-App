@@ -1,15 +1,20 @@
-package com.hooked.app.models;
+package com.hooked.app.models.angler;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.hooked.app.models.avatar.Avatar;
+import com.hooked.app.models.content.Content;
 import com.hooked.app.models.auth.User;
+import org.hibernate.annotations.WhereJoinTable;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Customer {
+public class Angler {
 
     @Id
     @GeneratedValue
@@ -31,11 +36,51 @@ public class Customer {
     @JsonIgnore
     private User user;
 
-    public Customer() {
+    @ManyToMany()
+    @JoinTable(
+            name="relationship",
+            joinColumns = @JoinColumn(name="originator_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name="recipient_id", referencedColumnName = "id")
+    )
+    @WhereJoinTable(clause = "type = 'ACCEPTED'")
+    @JsonIgnore
+    private Set<Angler> relationships = new HashSet<>();
+
+    @ManyToMany()
+    @JoinTable(
+            name="relationship",
+            joinColumns = @JoinColumn(name="recipient_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name="originator_id", referencedColumnName = "id")
+    )
+    @JsonIgnore
+    @WhereJoinTable(clause = "type = 'ACCEPTED'")
+    private Set<Angler> inverseRelationships = new HashSet<>();
+
+    @ManyToMany()
+    @JoinTable(
+            name="relationship",
+            joinColumns = @JoinColumn(name="originator_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name="recipient_id", referencedColumnName = "id")
+    )
+    @WhereJoinTable(clause = "type = 'PENDING'")
+    @JsonIgnore
+    private Set<Angler> pendingRelationships = new HashSet<>();
+
+    @ManyToMany()
+    @JoinTable(
+            name="relationship",
+            joinColumns = @JoinColumn(name="recipient_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name="originator_id", referencedColumnName = "id")
+    )
+    @JsonIgnore
+    @WhereJoinTable(clause = "type = 'PENDING'")
+    private Set<Angler> incomingRelationships = new HashSet<>();
+
+    public Angler() {
 
     }
 
-    public Customer(String name, String status, String birthday, String location, String about) {
+    public Angler(String name, String status, String birthday, String location, String about) {
         this.name = name;
         this.status = status;
         this.birthday = birthday;

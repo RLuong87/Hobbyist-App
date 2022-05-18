@@ -1,6 +1,7 @@
-package com.hooked.app.models;
+package com.hooked.app.models.content;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.hooked.app.models.angler.Angler;
 
 import javax.persistence.*;
 
@@ -12,9 +13,9 @@ public class Content {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    @JoinColumn(name = "angler_id", referencedColumnName = "id")
     @JsonIgnore
-    private Customer customer;
+    private Angler angler;
 
     private String title;
     private String content;
@@ -35,6 +36,14 @@ public class Content {
         this.id = id;
     }
 
+    public Angler getAngler() {
+        return angler;
+    }
+
+    public void setAngler(Angler angler) {
+        this.angler = angler;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -49,13 +58,5 @@ public class Content {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
     }
 }

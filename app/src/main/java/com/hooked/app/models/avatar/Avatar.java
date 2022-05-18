@@ -1,4 +1,4 @@
-package com.hooked.app.models;
+package com.hooked.app.models.avatar;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;

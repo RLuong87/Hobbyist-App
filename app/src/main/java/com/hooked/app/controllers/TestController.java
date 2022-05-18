@@ -1,20 +1,17 @@
 package com.hooked.app.controllers;
 
-import com.hooked.app.models.Customer;
 import com.hooked.app.models.auth.User;
 import com.hooked.app.payloads.api.response.StormGlass;
 import com.hooked.app.payloads.api.response.WeatherAPI;
-import com.hooked.app.repositories.CustomerRepository;
+import com.hooked.app.repositories.AnglerRepository;
 import com.hooked.app.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -30,7 +27,7 @@ public class TestController {
     private UserRepository userRepository;
 
     @Autowired
-    private CustomerRepository customerRepository;
+    private AnglerRepository anglerRepository;
 
     @Value("${hooked.app.weatherApiKey}")
     private String weatherApiKey;

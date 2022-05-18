@@ -1,6 +1,6 @@
 package com.hooked.app.repositories;
 
-import com.hooked.app.models.Content;
+import com.hooked.app.models.content.Content;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
