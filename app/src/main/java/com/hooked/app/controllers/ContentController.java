@@ -45,7 +45,7 @@ public class ContentController {
             return null;
         }
         Angler currentAngler = anglerRepository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        content.setCustomer(currentAngler);
+        content.setAngler(currentAngler);
 
         return new ResponseEntity<>(contentRepository.save(content), HttpStatus.CREATED);
     }
@@ -66,7 +66,7 @@ public class ContentController {
     }
 
     @GetMapping("/customer/{cId}")
-    public ResponseEntity<List<Content>> getByCustomerId(@PathVariable Long cId) {
-        return new ResponseEntity<>(contentRepository.findAllByCustomer_id(cId), HttpStatus.OK);
+    public ResponseEntity<List<Content>> getByAnglerId(@PathVariable Long aId) {
+        return new ResponseEntity<>(contentRepository.findAllByAngler_id(aId), HttpStatus.OK);
     }
 }

@@ -5,7 +5,7 @@ public class StormGlass {
     private AirTemperature airTemperature;
     private WaveHeight waveHeight;
 
-    private class AirTemperature {
+    private static class AirTemperature {
 
         private float dwd;
         private float noaa;

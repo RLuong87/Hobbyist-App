@@ -68,13 +68,6 @@ public class TestController {
         return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
     }
 
-//    @GetMapping("/{name}")
-//    public ResponseEntity<Customer> getUserByUsername(@PathVariable String name) {
-//        Customer customer = customerRepository.findByName(name).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-//
-//        return new ResponseEntity<>(customerRepository.save(customer), HttpStatus.OK);
-//    }
-
     @GetMapping("/forecast")
     public ResponseEntity<?> getForecast() {
 

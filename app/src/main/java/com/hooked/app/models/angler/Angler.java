@@ -25,7 +25,7 @@ public class Angler {
     private String location;
     private String about;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "angler")
     private List<Content> content;
 
     @OneToOne
@@ -158,5 +158,37 @@ public class Angler {
 
     public void setAbout(String about) {
         this.about = about;
+    }
+
+    public Set<Angler> getRelationships() {
+        return relationships;
+    }
+
+    public void setRelationships(Set<Angler> relationships) {
+        this.relationships = relationships;
+    }
+
+    public Set<Angler> getInverseRelationships() {
+        return inverseRelationships;
+    }
+
+    public void setInverseRelationships(Set<Angler> inverseRelationships) {
+        this.inverseRelationships = inverseRelationships;
+    }
+
+    public Set<Angler> getPendingRelationships() {
+        return pendingRelationships;
+    }
+
+    public void setPendingRelationships(Set<Angler> pendingRelationships) {
+        this.pendingRelationships = pendingRelationships;
+    }
+
+    public Set<Angler> getIncomingRelationships() {
+        return incomingRelationships;
+    }
+
+    public void setIncomingRelationships(Set<Angler> incomingRelationships) {
+        this.incomingRelationships = incomingRelationships;
     }
 }

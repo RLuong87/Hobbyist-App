@@ -14,7 +14,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/anglers")
+@RequestMapping("/customers")
 public class AnglerController {
 
     @Autowired
@@ -50,38 +50,38 @@ public class AnglerController {
         return new ResponseEntity<>(SelfAngler.build(angler), HttpStatus.CREATED);
     }
 
-//    @PutMapping
-//    public @ResponseBody ResponseEntity<Customer> updateCustomer(@RequestBody Customer updates) {
-//
-//        if (updates.getName() != null) updates.setName(updates.getName());
-//        if (updates.getStatus() != null) updates.setStatus(updates.getStatus());
-//        if (updates.getBirthday() != null) updates.setBirthday(updates.getBirthday());
-//        if (updates.getLocation() != null) updates.setLocation(updates.getLocation());
-//        if (updates.getAbout() != null) updates.setAbout(updates.getAbout());
-//
-//        return new ResponseEntity<>(customerRepository.save(updates), HttpStatus.OK);
-//    }
-
     @PutMapping
-    public @ResponseBody Angler updateCustomer(@RequestBody Angler updates) {
-        User currentUser = userService.getCurrentUser();
+    public @ResponseBody ResponseEntity<Angler> updateAngler(@RequestBody Angler updates) {
 
-        if (currentUser == null) {
-            return null;
-        }
-        Angler angler = anglerRepository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        if (updates.getName() != null) updates.setName(updates.getName());
+        if (updates.getStatus() != null) updates.setStatus(updates.getStatus());
+        if (updates.getBirthday() != null) updates.setBirthday(updates.getBirthday());
+        if (updates.getLocation() != null) updates.setLocation(updates.getLocation());
+        if (updates.getAbout() != null) updates.setAbout(updates.getAbout());
 
-        if (updates.getName() != null) angler.setName(updates.getName());
-        if (updates.getStatus() != null) angler.setStatus(updates.getStatus());
-        if (updates.getBirthday() != null) angler.setBirthday(updates.getBirthday());
-        if (updates.getLocation() != null) angler.setLocation(updates.getLocation());
-        if (updates.getAbout() != null) angler.setAbout(updates.getAbout());
-
-        return anglerRepository.save(angler);
+        return new ResponseEntity<>(anglerRepository.save(updates), HttpStatus.OK);
     }
 
+//    @PutMapping
+//    public @ResponseBody Angler updateAngler(@RequestBody Angler updates) {
+//        User currentUser = userService.getCurrentUser();
+//
+//        if (currentUser == null) {
+//            return null;
+//        }
+//        Angler angler = anglerRepository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+//
+//        if (updates.getName() != null) angler.setName(updates.getName());
+//        if (updates.getStatus() != null) angler.setStatus(updates.getStatus());
+//        if (updates.getBirthday() != null) angler.setBirthday(updates.getBirthday());
+//        if (updates.getLocation() != null) angler.setLocation(updates.getLocation());
+//        if (updates.getAbout() != null) angler.setAbout(updates.getAbout());
+//
+//        return anglerRepository.save(angler);
+//    }
+
     @PutMapping("/{id}")
-    public @ResponseBody ResponseEntity<Angler> updateCustomer(@PathVariable Long id, @RequestBody Angler updates) {
+    public @ResponseBody ResponseEntity<Angler> updateAnglerById(@PathVariable Long id, @RequestBody Angler updates) {
         Angler angler = anglerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         if (updates.getName() != null) angler.setName(updates.getName());

@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ContentRepository extends JpaRepository<Content, Long> {
 
-    List<Content> findAllByCustomer_id(Long id);
+    List<Content> findAllByAngler_id(Long id);
 }
