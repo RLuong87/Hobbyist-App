@@ -55,6 +55,7 @@ public class ContentController {
         Content content = contentRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         if (updates.getContent() != null) content.setContent(updates.getContent());
+        if (updates.getTitle() != null) content.setTitle(updates.getTitle());
 
         return contentRepository.save(content);
     }
@@ -65,7 +66,7 @@ public class ContentController {
         return new ResponseEntity<>("Deleted", HttpStatus.OK);
     }
 
-    @GetMapping("/customer/{cId}")
+    @GetMapping("/customer/{aId}")
     public ResponseEntity<List<Content>> getByAnglerId(@PathVariable Long aId) {
         return new ResponseEntity<>(contentRepository.findAllByAngler_id(aId), HttpStatus.OK);
     }

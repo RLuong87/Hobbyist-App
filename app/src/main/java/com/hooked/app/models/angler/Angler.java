@@ -33,7 +33,7 @@ public class Angler {
 
     @OneToOne
     @JoinColumn(name = "users_id", referencedColumnName = "id")
-    @JsonIgnore
+//    @JsonIgnore
     private User user;
 
     @ManyToMany()
