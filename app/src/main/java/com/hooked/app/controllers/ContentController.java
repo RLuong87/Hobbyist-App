@@ -37,6 +37,11 @@ public class ContentController {
         return new ResponseEntity<>(contentRepository.findAll(), HttpStatus.OK);
     }
 
+//    @PostMapping
+//    public ResponseEntity<Content> createContent(@RequestBody Content content) {
+//        return new ResponseEntity<>(contentRepository.save(content), HttpStatus.CREATED);
+//    }
+
     @PostMapping
     public ResponseEntity<Content> createOne(@RequestBody Content content) {
         User currentUser = userService.getCurrentUser();
@@ -51,13 +56,12 @@ public class ContentController {
     }
 
     @PutMapping("/{id}")
-    public @ResponseBody Content updateContent(@PathVariable Long id, @RequestBody Content updates) {
-        Content content = contentRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    public @ResponseBody Angler updateContent(@PathVariable Long id, @RequestBody Angler updates) {
+        Angler angler = anglerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        if (updates.getContent() != null) content.setContent(updates.getContent());
-        if (updates.getTitle() != null) content.setTitle(updates.getTitle());
+        if (updates.getContent() != null) angler.setContent(updates.getContent());
 
-        return contentRepository.save(content);
+        return anglerRepository.save(angler);
     }
 
     @DeleteMapping("/{id}")

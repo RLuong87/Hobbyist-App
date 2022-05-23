@@ -2,6 +2,8 @@ package com.hooked.app.controllers;
 
 import com.hooked.app.models.auth.User;
 import com.hooked.app.models.angler.Angler;
+import com.hooked.app.payloads.response.MessageResponse;
+import com.hooked.app.payloads.response.PublicAngler;
 import com.hooked.app.payloads.response.SelfAngler;
 import com.hooked.app.repositories.AnglerRepository;
 import com.hooked.app.service.UserService;
@@ -28,10 +30,21 @@ public class AnglerController {
         return new ResponseEntity<>(anglerRepository.findAll(), HttpStatus.OK);
     }
 
+//    @GetMapping("/{id}")
+//    public @ResponseBody Angler getAngler(@PathVariable Long id) {
+//        return anglerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+//    }
+
     @GetMapping("/{id}")
-    public @ResponseBody
-    Angler getCustomer(@PathVariable Long id) {
-        return anglerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    public ResponseEntity<?> getAnglerById(@PathVariable Long id) {
+        User currentUser = userService.getCurrentUser();
+
+        if (currentUser == null) {
+            return null;
+        }
+        Angler angler = anglerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        return new ResponseEntity<>(PublicAngler.build(angler), HttpStatus.OK);
     }
 
     @PostMapping
@@ -50,18 +63,6 @@ public class AnglerController {
         return new ResponseEntity<>(SelfAngler.build(angler), HttpStatus.CREATED);
     }
 
-//    @PutMapping
-//    public @ResponseBody ResponseEntity<Angler> updateAngler(@RequestBody Angler updates) {
-//
-//        if (updates.getName() != null) updates.setName(updates.getName());
-//        if (updates.getStatus() != null) updates.setStatus(updates.getStatus());
-//        if (updates.getBirthday() != null) updates.setBirthday(updates.getBirthday());
-//        if (updates.getLocation() != null) updates.setLocation(updates.getLocation());
-//        if (updates.getAbout() != null) updates.setAbout(updates.getAbout());
-//
-//        return new ResponseEntity<>(anglerRepository.save(updates), HttpStatus.OK);
-//    }
-
     @PutMapping
     public @ResponseBody Angler updateAngler(@RequestBody Angler updates) {
         User currentUser = userService.getCurrentUser();
@@ -76,6 +77,8 @@ public class AnglerController {
         if (updates.getBirthday() != null) angler.setBirthday(updates.getBirthday());
         if (updates.getLocation() != null) angler.setLocation(updates.getLocation());
         if (updates.getAbout() != null) angler.setAbout(updates.getAbout());
+        if (updates.getAvatar() != null) angler.setAvatar(updates.getAvatar());
+        if (updates.getContent() != null) angler.setContent(updates.getContent());
 
         return anglerRepository.save(angler);
     }

@@ -25,16 +25,15 @@ public class Angler {
     private String location;
     private String about;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "angler")
-    private List<Content> content;
-
     @OneToOne
     private Avatar avatar;
 
     @OneToOne
     @JoinColumn(name = "users_id", referencedColumnName = "id")
-//    @JsonIgnore
     private User user;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "angler")
+    private List<Content> content;
 
     @ManyToMany()
     @JoinTable(
@@ -80,12 +79,13 @@ public class Angler {
 
     }
 
-    public Angler(String name, String status, String birthday, String location, String about) {
+    public Angler(String name, String status, String birthday, String location, String about, Avatar avatar) {
         this.name = name;
         this.status = status;
         this.birthday = birthday;
         this.location = location;
         this.about = about;
+        this.avatar = avatar;
     }
 
     public Long getId() {
