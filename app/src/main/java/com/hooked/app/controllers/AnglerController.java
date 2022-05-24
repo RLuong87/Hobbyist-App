@@ -91,7 +91,7 @@ public class AnglerController {
         if (updates.getStatus() != null) angler.setStatus(updates.getStatus());
         if (updates.getBirthday() != null) angler.setBirthday(updates.getBirthday());
         if (updates.getLocation() != null) angler.setLocation(updates.getLocation());
-        if (updates.getAbout() != null) updates.setAbout(updates.getAbout());
+        if (updates.getAbout() != null) angler.setAbout(updates.getAbout());
 
         return new ResponseEntity<>(anglerRepository.save(angler), HttpStatus.OK);
     }
