@@ -1,4 +1,5 @@
 # Hobbyist-App
+Fishing application built with Spring Boot, React and MySql. Intended to be a platform for fishing entusiats to share stories or pictures of their catch of the day. Users can login and connect with people who loves to do what they do.
 
 
 # Headers
