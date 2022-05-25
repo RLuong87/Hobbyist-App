@@ -2,6 +2,7 @@ package com.hooked.app.models.angler;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import com.hooked.app.models.avatar.Avatar;
 import com.hooked.app.models.content.Content;
 import com.hooked.app.models.auth.User;
@@ -33,6 +34,7 @@ public class Angler {
     private User user;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "angler")
+    @JsonIncludeProperties({"angler", "title", "content"})
     private List<Content> content;
 
     @ManyToMany()

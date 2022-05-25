@@ -5,23 +5,26 @@ import com.hooked.app.models.avatar.Avatar;
 
 public class PublicAngler {
     private Long id;
-    private String name;
     private Avatar avatar;
+    private String name;
     private String location;
+    private String about;
 
-    public PublicAngler(Long id, String name, Avatar avatar, String location) {
+    public PublicAngler(Long id, Avatar avatar, String name, String location, String about) {
         this.id = id;
-        this.name = name;
         this.avatar = avatar;
+        this.name = name;
         this.location = location;
+        this.about = about;
     }
 
     static public PublicAngler build(Angler angler) {
         return new PublicAngler(
                 angler.getId(),
-                angler.getName(),
                 angler.getAvatar(),
-                angler.getLocation()
+                angler.getName(),
+                angler.getLocation(),
+                angler.getAbout()
         );
     }
 
@@ -55,5 +58,13 @@ public class PublicAngler {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
     }
 }

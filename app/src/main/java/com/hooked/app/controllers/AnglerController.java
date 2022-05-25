@@ -2,10 +2,12 @@ package com.hooked.app.controllers;
 
 import com.hooked.app.models.auth.User;
 import com.hooked.app.models.angler.Angler;
+import com.hooked.app.models.content.Content;
 import com.hooked.app.payloads.response.MessageResponse;
 import com.hooked.app.payloads.response.PublicAngler;
 import com.hooked.app.payloads.response.SelfAngler;
 import com.hooked.app.repositories.AnglerRepository;
+import com.hooked.app.repositories.ContentRepository;
 import com.hooked.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,17 +25,15 @@ public class AnglerController {
     private AnglerRepository anglerRepository;
 
     @Autowired
+    private ContentRepository contentRepository;
+
+    @Autowired
     private UserService userService;
 
     @GetMapping
     public ResponseEntity<List<Angler>> getAllAnglers() {
         return new ResponseEntity<>(anglerRepository.findAll(), HttpStatus.OK);
     }
-
-//    @GetMapping("/{id}")
-//    public @ResponseBody Angler getAngler(@PathVariable Long id) {
-//        return anglerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getAnglerById(@PathVariable Long id) {
@@ -61,6 +61,19 @@ public class AnglerController {
         Angler angler = anglerRepository.save(newAngler);
 
         return new ResponseEntity<>(SelfAngler.build(angler), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/content")
+    public ResponseEntity<Content> createOne(@RequestBody Content content) {
+        User currentUser = userService.getCurrentUser();
+
+        if (currentUser == null) {
+            return null;
+        }
+        Angler currentAngler = anglerRepository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        content.setAngler(currentAngler);
+
+        return new ResponseEntity<>(contentRepository.save(content), HttpStatus.CREATED);
     }
 
     @PutMapping
@@ -94,6 +107,21 @@ public class AnglerController {
         if (updates.getAbout() != null) angler.setAbout(updates.getAbout());
 
         return new ResponseEntity<>(anglerRepository.save(angler), HttpStatus.OK);
+    }
+
+    @PutMapping("/content/{id}")
+    public @ResponseBody Content updateContent(@PathVariable Long id, @RequestBody Content updates) {
+        User currentUser = userService.getCurrentUser();
+
+        if (currentUser == null) {
+            return null;
+        }
+        Content content = contentRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        if (updates.getTitle() != null) content.setTitle(updates.getTitle());
+        if (updates.getContent() != null) content.setContent(updates.getContent());
+
+        return contentRepository.save(content);
     }
 
     @DeleteMapping("/{id}")

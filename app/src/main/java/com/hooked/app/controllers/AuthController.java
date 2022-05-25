@@ -6,6 +6,7 @@ import com.hooked.app.models.auth.User;
 import com.hooked.app.payloads.request.LoginRequest;
 import com.hooked.app.payloads.request.SignupRequest;
 import com.hooked.app.payloads.response.JwtResponse;
+import com.hooked.app.payloads.response.LoginResponse;
 import com.hooked.app.payloads.response.MessageResponse;
 import com.hooked.app.repositories.RoleRepository;
 import com.hooked.app.repositories.UserRepository;
@@ -41,6 +42,9 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
+    private LoginResponse loginResponse;
+
+    @Autowired
     private PasswordEncoder encoder;
 
     @Autowired
@@ -53,6 +57,8 @@ public class AuthController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
+
+
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream()

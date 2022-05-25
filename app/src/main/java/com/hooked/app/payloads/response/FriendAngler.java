@@ -10,19 +10,20 @@ public class FriendAngler extends PublicAngler {
     @JsonIncludeProperties({"id", "name"})
     private Set<Angler> friends;
 
-    public FriendAngler(Long id, String name, Avatar avatar, String location, Set<Angler> friends) {
-        super(id, name, avatar, location);
-        this.friends = friends;
+    public FriendAngler(Long id, Avatar avatar, String name, String location, String about, Set<Angler> friends) {
+        super(id, avatar, name, location, about);
     }
+
 
     static public FriendAngler build(Angler angler) {
         Set<Angler> friends = angler.getRelationships();
         friends.addAll(angler.getInverseRelationships());
         return new FriendAngler(
                 angler.getId(),
-                angler.getName(),
                 angler.getAvatar(),
+                angler.getName(),
                 angler.getLocation(),
+                angler.getAbout(),
                 friends
         );
     }
