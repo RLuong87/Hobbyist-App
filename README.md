@@ -6,7 +6,6 @@ Fishing application built with Spring Boot, React and MySql. Intended to be a pl
 ## Sub Header
 ### Sub Sub Header
 
-![img]()
 
 To refer to a variable named `name` use the back ticks
 
