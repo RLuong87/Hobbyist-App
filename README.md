@@ -4,7 +4,7 @@ Fishing application built with a Spring Boot backend, React frontend and a MySql
 # How to run locally
 
 ```bash
-  git clone git@github.com:RLuong87/Hobbyist-App.git
+  git clone https://github.com/RLuong87/Hobbyist-App.git
 ```
 
 The frontend to this project is located here, https://github.com/RLuong87/Hobbyist-React-App
