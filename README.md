@@ -2,10 +2,7 @@
 Fishing application built with Spring Boot, React and MySql. Intended to be a platform for fishing entusiasts to share stories or pictures of their catch of the day. Users can login and connect with people who love to do what they do.
 
 
-# Headers
-## Sub Header
-### Sub Sub Header
-
+# How to run locally
 
 To refer to a variable named `name` use the back ticks
 
