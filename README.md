@@ -1,4 +1,5 @@
-# Hobbyist-App
+# Hooked App Backend
+
 Fishing application built with a Spring Boot backend, React frontend and a MySql database. Intended to be a platform for fishing entusiasts to share stories or pictures of their catch of the day. Users can login and connect with people who love to do what they do.
 
 # How to run locally
