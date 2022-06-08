@@ -4,18 +4,11 @@ Fishing application built with Spring Boot, React and MySql. Intended to be a pl
 
 # How to run locally
 
-To refer to a variable named `name` use the back ticks
-
-for a code block use three backticks also keep in mind just like html
-line breaks do nothing. 
-
-to separate lines you need two spaces one after the other.  
-then the line return will occur
-
-
 ```bash
-  npm i react-router-dom
+  git clone git@github.com:RLuong87/Hobbyist-App.git
 ```
+
+
 
 tables:
 | header1 | header2 | header3 |
