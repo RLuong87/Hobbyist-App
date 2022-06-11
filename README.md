@@ -1,25 +1,16 @@
-# Hobbyist-App
-Fishing application built with Spring Boot, React and MySql. Intended to be a platform for fishing entusiasts to share stories or pictures of their catch of the day. Users can login and connect with people who love to do what they do.
+# Hooked App Backend
 
+Fishing application built with a Spring Boot backend, React frontend and a MySql database. Intended to be a platform for fishing entusiasts to share stories or pictures of their catch of the day. Users can login and connect with people who love to do what they do.
 
-# Headers
-## Sub Header
-### Sub Sub Header
-
-![img]()
-
-To refer to a variable named `name` use the back ticks
-
-for a code block use three backticks also keep in mind just like html
-line breaks do nothing. 
-
-to separate lines you need two spaces one after the other.  
-then the line return will occur
-
+# How to run locally
 
 ```bash
-  npm i react-router-dom
+  git clone https://github.com/RLuong87/Hobbyist-App.git
 ```
+
+The frontend to this project is located here, https://github.com/RLuong87/Hobbyist-React-App
+
+
 
 tables:
 | header1 | header2 | header3 |
