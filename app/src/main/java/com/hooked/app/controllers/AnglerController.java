@@ -2,11 +2,12 @@ package com.hooked.app.controllers;
 
 import com.hooked.app.models.auth.User;
 import com.hooked.app.models.angler.Angler;
+import com.hooked.app.models.avatar.Avatar;
 import com.hooked.app.models.content.Content;
-import com.hooked.app.payloads.response.MessageResponse;
 import com.hooked.app.payloads.response.PublicAngler;
 import com.hooked.app.payloads.response.SelfAngler;
 import com.hooked.app.repositories.AnglerRepository;
+import com.hooked.app.repositories.AvatarRepository;
 import com.hooked.app.repositories.ContentRepository;
 import com.hooked.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/api/customers")
 public class AnglerController {
 
     @Autowired
@@ -26,6 +27,9 @@ public class AnglerController {
 
     @Autowired
     private ContentRepository contentRepository;
+
+    @Autowired
+    private AvatarRepository avatarRepository;
 
     @Autowired
     private UserService userService;
@@ -74,6 +78,32 @@ public class AnglerController {
         content.setAngler(currentAngler);
 
         return new ResponseEntity<>(contentRepository.save(content), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/uploadAvatar")
+    public ResponseEntity<Avatar> createAvatar(@RequestBody Avatar avatar) {
+        User currentUser = userService.getCurrentUser();
+
+        if (currentUser == null) {
+            return null;
+        }
+        Angler currentAngler = anglerRepository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        avatar.setAngler(currentAngler);
+
+        return new ResponseEntity<>(avatarRepository.save(avatar), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/updateAvatar")
+    public ResponseEntity<Avatar> updateAvatar(@RequestBody Avatar avatar) {
+        User currentUser = userService.getCurrentUser();
+
+        if (currentUser == null) {
+            return null;
+        }
+        Angler currentAngler = anglerRepository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        avatar.setAngler(currentAngler);
+
+        return new ResponseEntity<>(avatarRepository.save(avatar), HttpStatus.CREATED);
     }
 
     @PutMapping

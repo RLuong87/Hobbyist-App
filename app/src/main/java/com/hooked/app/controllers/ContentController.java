@@ -24,12 +24,6 @@ public class ContentController {
     private ContentRepository contentRepository;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private AnglerRepository anglerRepository;
-
-    @Autowired
     private UserService userService;
 
     @GetMapping
@@ -37,14 +31,14 @@ public class ContentController {
         return new ResponseEntity<>(contentRepository.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/customer/{aId}")
+    public ResponseEntity<List<Content>> getByAnglerId(@PathVariable Long aId) {
+        return new ResponseEntity<>(contentRepository.findAllByAngler_id(aId), HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteById(@PathVariable Long id) {
         contentRepository.deleteById(id);
         return new ResponseEntity<>("Deleted", HttpStatus.OK);
-    }
-
-    @GetMapping("/customer/{aId}")
-    public ResponseEntity<List<Content>> getByAnglerId(@PathVariable Long aId) {
-        return new ResponseEntity<>(contentRepository.findAllByAngler_id(aId), HttpStatus.OK);
     }
 }

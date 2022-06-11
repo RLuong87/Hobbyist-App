@@ -42,9 +42,6 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private LoginResponse loginResponse;
-
-    @Autowired
     private PasswordEncoder encoder;
 
     @Autowired
@@ -57,8 +54,6 @@ public class AuthController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
-
-
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream()

@@ -1,10 +1,10 @@
 package com.hooked.app.controllers;
 
-import com.hooked.app.models.auth.User;
+import com.hooked.app.models.avatar.Avatar;
 import com.hooked.app.payloads.api.response.StormGlass;
 import com.hooked.app.payloads.api.response.WeatherAPI;
 import com.hooked.app.repositories.AnglerRepository;
-import com.hooked.app.repositories.UserRepository;
+import com.hooked.app.repositories.AvatarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -12,8 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -24,10 +22,10 @@ public class TestController {
     private RestTemplate restTemplate;
 
     @Autowired
-    private UserRepository userRepository;
+    private AnglerRepository anglerRepository;
 
     @Autowired
-    private AnglerRepository anglerRepository;
+    private AvatarRepository avatarRepository;
 
     @Value("${hooked.app.weatherApiKey}")
     private String weatherApiKey;
@@ -63,11 +61,6 @@ public class TestController {
         return "WEATHER TEST!";
     }
 
-    @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
-    }
-
     @GetMapping("/forecast")
     public ResponseEntity<?> getForecast() {
 
@@ -101,7 +94,9 @@ public class TestController {
         return ResponseEntity.ok(response);
     }
 
-//    @PostMapping
-//    public ResponseEntity<User> createUser()
+    @PostMapping("/uploadImage")
+    public ResponseEntity<Avatar> createAvatar(Avatar avatar) {
+        return new ResponseEntity<>(avatarRepository.save(avatar), HttpStatus.CREATED);
+    }
 
 }

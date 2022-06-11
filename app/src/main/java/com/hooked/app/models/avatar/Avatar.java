@@ -2,11 +2,9 @@ package com.hooked.app.models.avatar;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.hooked.app.models.angler.Angler;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @JsonIdentityInfo(
@@ -20,8 +18,12 @@ public class Avatar {
     private Long id;
     private String url;
 
-    public Avatar(String url) {
+    @OneToOne
+    private Angler angler;
+
+    public Avatar(String url, Angler angler) {
         this.url = url;
+        this.angler = angler;
     }
 
     public Avatar() {
@@ -41,5 +43,13 @@ public class Avatar {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public Angler getAngler() {
+        return angler;
+    }
+
+    public void setAngler(Angler angler) {
+        this.angler = angler;
     }
 }
