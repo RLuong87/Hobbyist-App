@@ -90,6 +90,7 @@ public class Angler {
         this.avatar = avatar;
     }
 
+
     public Long getId() {
         return id;
     }
