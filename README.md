@@ -11,7 +11,6 @@ Fishing application built with a Spring Boot backend, React frontend and a MySql
 The frontend to this project is located here, https://github.com/RLuong87/Hobbyist-React-App
 
 
-
 tables:
 | header1 | header2 | header3 |
 | :------ | :-----: | ------: |
