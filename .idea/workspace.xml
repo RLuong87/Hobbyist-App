@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60f9e1f6-f004-4218-91d7-a44fd389fc7f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/service/UserProfileService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/filestore/FileStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/filestore/FileStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/models/angler/Angler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/models/angler/Angler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/repositories/AnglerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/repositories/AnglerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/ContentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/ContentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/api/response/TideAPI.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
