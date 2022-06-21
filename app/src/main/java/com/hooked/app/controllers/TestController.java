@@ -1,10 +1,13 @@
 package com.hooked.app.controllers;
 
+import com.hooked.app.models.angler.Angler;
+import com.hooked.app.models.auth.User;
 import com.hooked.app.models.avatar.Avatar;
 import com.hooked.app.payloads.api.response.StormGlass;
 import com.hooked.app.payloads.api.response.WeatherAPI;
 import com.hooked.app.repositories.AnglerRepository;
 import com.hooked.app.repositories.AvatarRepository;
+import com.hooked.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -61,6 +64,9 @@ public class TestController {
         return "WEATHER TEST!";
     }
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/forecast")
     public ResponseEntity<?> getForecast() {
 
@@ -94,9 +100,19 @@ public class TestController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/uploadImage")
-    public ResponseEntity<Avatar> createAvatar(Avatar avatar) {
-        return new ResponseEntity<>(avatarRepository.save(avatar), HttpStatus.CREATED);
-    }
+//    @PostMapping("/uploadImage")
+//    public ResponseEntity<Avatar> createAvatar(@RequestBody Avatar avatar) {
+//
+//        User currentUser = userService.getCurrentUser();
+//
+//        if (currentUser == null) {
+//            return null;
+//        }
+//        avatar.setAngler(currentUser);
+//
+//        Avatar avatar1 = avatarRepository.save(avatar);
+//
+//        return new ResponseEntity<>(avatarRepository.save(avatar), HttpStatus.CREATED);
+//    }
 
 }

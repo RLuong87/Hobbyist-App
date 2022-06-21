@@ -3,6 +3,7 @@ package com.hooked.app.models.avatar;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.hooked.app.models.angler.Angler;
+import com.hooked.app.models.auth.User;
 
 import javax.persistence.*;
 

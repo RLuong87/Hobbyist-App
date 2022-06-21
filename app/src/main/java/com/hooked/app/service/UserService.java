@@ -22,7 +22,7 @@ public class UserService {
 
         Optional<User> currentUser = userRepository.findById(userDetails.getId());
 
-        if(currentUser.isEmpty()) {
+        if (currentUser.isEmpty()) {
             return null;
         }
         return currentUser.get();
