@@ -10,6 +10,9 @@ import java.util.Optional;
 public interface AnglerRepository extends JpaRepository<Angler, Long> {
     Optional<Angler> findByUser_id(Long id);
 
+//    @Query(value = "SELECT * FROM angler")
+//    Optional<Angler> findBy_name();
+
 //    @Query(value = "SELECT * FROM angler WHERE ")
 //    List<Angler>
 

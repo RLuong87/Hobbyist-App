@@ -8,16 +8,16 @@ public class SelfAngler {
 
     private Long id;
     private String name;
-    private String email;
+    private String status;
     private String location;
     private Set<Angler> friends;
     private Set<Angler> pendingFriends;
     private Set<Angler> incomingFriends;
 
-    public SelfAngler(Long id, String name, String email, String location, Set<Angler> friends, Set<Angler> pendingFriends, Set<Angler> incomingFriends) {
+    public SelfAngler(Long id, String name, String status, String location, Set<Angler> friends, Set<Angler> pendingFriends, Set<Angler> incomingFriends) {
         this.id = id;
         this.name = name;
-        this.email = email;
+        this.status = status;
         this.location = location;
         this.friends = friends;
         this.pendingFriends = pendingFriends;
@@ -54,12 +54,12 @@ public class SelfAngler {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getStatus() {
+        return status;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getLocation() {
