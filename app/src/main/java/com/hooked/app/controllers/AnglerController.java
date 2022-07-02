@@ -144,7 +144,6 @@ public class AnglerController {
         if (updates.getLocation() != null) angler.setLocation(updates.getLocation());
         if (updates.getAbout() != null) angler.setAbout(updates.getAbout());
         if (updates.getAvatar() != null) angler.setAvatar(updates.getAvatar());
-        if (updates.getContent() != null) angler.setContent(updates.getContent());
 
         return anglerRepository.save(angler);
     }

@@ -16,6 +16,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/test")
@@ -29,6 +31,9 @@ public class TestController {
 
     @Autowired
     private AvatarRepository avatarRepository;
+
+    @Autowired
+    private UserService userService;
 
     @Value("${hooked.app.weatherApiKey}")
     private String weatherApiKey;
@@ -64,8 +69,15 @@ public class TestController {
         return "WEATHER TEST!";
     }
 
-    @Autowired
-    private UserService userService;
+    @GetMapping("/{name}")
+    public ResponseEntity<List<Angler>> findByName(@PathVariable String name) {
+        User currentUser = userService.getCurrentUser();
+
+        if (currentUser == null) {
+            return null;
+        }
+        return new ResponseEntity<>(anglerRepository.findByName(name), HttpStatus.OK);
+    }
 
     @GetMapping("/forecast")
     public ResponseEntity<?> getForecast() {
@@ -92,7 +104,6 @@ public class TestController {
     public ResponseEntity<StormGlass> getWeatherForecastV4(@RequestParam String lat,
                                                            @RequestParam String lng,
                                                            @RequestParam String params) {
-
         String uri = "https://api.stormglass.io/v2/weather/point";
 
         StormGlass response = restTemplate.getForObject(uri, StormGlass.class);
