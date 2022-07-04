@@ -62,17 +62,15 @@ public class AnglerController {
         return SelfAngler.build(currentAngler);
     }
 
-//    @GetMapping("/{name}")
-//    public ResponseEntity<?> getAnglerByName(@PathVariable String name) {
-//        User currentUser = userService.getCurrentUser();
-//
-//        if (currentUser == null) {
-//            return null;
-//        }
-//        Angler angler = (Angler) anglerRepository.findBy_name().orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-//
-//        return new ResponseEntity<>(PublicAngler.build(angler), HttpStatus.OK);
-//    }
+    @GetMapping("/{name}")
+    public ResponseEntity<List<Angler>> findByName(@PathVariable String name) {
+        User currentUser = userService.getCurrentUser();
+
+        if (currentUser == null) {
+            return null;
+        }
+        return new ResponseEntity<>(anglerRepository.findByName(name), HttpStatus.OK);
+    }
 
     @PostMapping
     public ResponseEntity<SelfAngler> createAngler(@RequestBody Angler newAngler) {
