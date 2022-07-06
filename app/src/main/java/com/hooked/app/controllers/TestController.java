@@ -69,15 +69,35 @@ public class TestController {
         return "WEATHER TEST!";
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<List<Angler>> findByName(@PathVariable String name) {
-        User currentUser = userService.getCurrentUser();
+//    @GetMapping("/{name}")
+//    public ResponseEntity<List<Angler>> findByName(@PathVariable String name) {
+//        User currentUser = userService.getCurrentUser();
+//
+//        if (currentUser == null) {
+//            return null;
+//        }
+//        return new ResponseEntity<>(anglerRepository.findByName(name), HttpStatus.OK);
+//    }
 
-        if (currentUser == null) {
-            return null;
-        }
-        return new ResponseEntity<>(anglerRepository.findByName(name), HttpStatus.OK);
-    }
+//    @GetMapping("/{location}")
+//    public ResponseEntity<List<Angler>> findByLocation(@PathVariable String location) {
+//        User currentUser = userService.getCurrentUser();
+//
+//        if (currentUser == null) {
+//            return null;
+//        }
+//        return new ResponseEntity<>(anglerRepository.findByLocation(location), HttpStatus.OK);
+//    }
+//
+//    @GetMapping("/{status}")
+//    public ResponseEntity<List<Angler>> findByStatus(@PathVariable String status) {
+//        User currentUser = userService.getCurrentUser();
+//
+//        if (currentUser == null) {
+//            return null;
+//        }
+//        return new ResponseEntity<>(anglerRepository.findByStatus(status), HttpStatus.OK);
+//    }
 
     @GetMapping("/forecast")
     public ResponseEntity<?> getForecast() {

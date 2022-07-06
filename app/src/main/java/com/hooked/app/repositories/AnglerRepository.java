@@ -12,4 +12,10 @@ public interface AnglerRepository extends JpaRepository<Angler, Long> {
 
     @Query("FROM Angler WHERE name = ?1")
     List<Angler> findByName(String name);
+
+    @Query("FROM Angler WHERE location = ?1")
+    List<Angler> findByLocation(String location);
+
+    @Query("FROM Angler WHERE status = ?1")
+    List<Angler> findByStatus(String status);
 }
