@@ -2,6 +2,12 @@
 
 Fishing application built with a Spring Boot backend, React frontend and a MySql database. Intended to be a platform for fishing entusiasts to share stories or pictures of their catch of the day. Users can login and connect with people who love to do what they do.
 
+# What is needed to run this project?
+* IDE's for example VsCode, IntelliJ
+* Postman if only running the backend
+* Java jdk, Node.js, React 
+* MySql
+
 # How to run locally
 
 ```bash
@@ -73,21 +79,3 @@ tables:
 | left aligned | `centered` | *italic right*|
 | small | __43__ | **super** |
 
-* step 1
-* step 2 
-  * step 2a
-  * step 2b
-* step 3
-
-1. numbers
-1. list
-1. numbers
-  1. hello 
-
-* Title and discription.  
-* Stack -> list of technology and packages used
-* why this was made  
-* How to run locally
-* how to deploy
-* img of it running
-* story about the project
