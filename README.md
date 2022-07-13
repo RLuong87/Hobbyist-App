@@ -8,13 +8,13 @@ Fishing application built with a Spring Boot backend, React frontend and a MySql
 * Java jdk, Node.js, React 
 * MySql
 
+### The frontend to this project is located here, https://github.com/RLuong87/Hobbyist-React-App
+
 # How to run locally
 
 ```bash
   git clone https://github.com/RLuong87/Hobbyist-App.git
 ```
-
-The frontend to this project is located here, https://github.com/RLuong87/Hobbyist-React-App
 
 # You will need MySql downloaded and installed
 
@@ -35,9 +35,9 @@ Grant permissions
   grant all on <database_name>.* to '<username>'@'%';
 ```
 
-JAVA Spring Boot
+## JAVA Spring Boot
 
-Application.properties
+### Application.properties
 
 Spring configurations
 
@@ -70,12 +70,12 @@ Sign Up
   POST /api/auth/signup
 ```
 
+Sign In
+
+```bash
+  POST /api/auth/signin
+```
 
 
 
-tables:
-| header1 | header2 | header3 |
-| :------ | :-----: | ------: |
-| left aligned | `centered` | *italic right*|
-| small | __43__ | **super** |
 
