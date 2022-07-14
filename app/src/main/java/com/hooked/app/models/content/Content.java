@@ -11,12 +11,11 @@ public class Content {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "angler_id", referencedColumnName = "id")
-    @JsonIncludeProperties({"id", "name"})
+    @JsonIgnore
     private Angler angler;
 
     private String title;

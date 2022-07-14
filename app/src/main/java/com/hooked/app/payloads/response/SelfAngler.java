@@ -6,44 +6,33 @@ import java.util.Set;
 
 public class SelfAngler {
 
-    private Long id;
     private String name;
     private String status;
+    private String birthday;
     private String location;
+    private String about;
     private Set<Angler> friends;
-    private Set<Angler> pendingFriends;
-    private Set<Angler> incomingFriends;
 
-    public SelfAngler(Long id, String name, String status, String location, Set<Angler> friends, Set<Angler> pendingFriends, Set<Angler> incomingFriends) {
-        this.id = id;
+    public SelfAngler(String name, String status, String birthday, String location, String about, Set<Angler> friends) {
         this.name = name;
         this.status = status;
+        this.birthday = birthday;
         this.location = location;
+        this.about = about;
         this.friends = friends;
-        this.pendingFriends = pendingFriends;
-        this.incomingFriends = incomingFriends;
     }
 
     static public SelfAngler build(Angler angler) {
         Set<Angler> friends = angler.getRelationships();
         friends.addAll(angler.getInverseRelationships());
         return new SelfAngler(
-                angler.getId(),
                 angler.getName(),
                 angler.getStatus(),
                 angler.getLocation(),
-                friends,
-                angler.getPendingRelationships(),
-                angler.getIncomingRelationships()
+                angler.getBirthday(),
+                angler.getAbout(),
+                friends
         );
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -70,27 +59,27 @@ public class SelfAngler {
         this.location = location;
     }
 
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
     public Set<Angler> getFriends() {
         return friends;
     }
 
     public void setFriends(Set<Angler> friends) {
         this.friends = friends;
-    }
-
-    public Set<Angler> getPendingFriends() {
-        return pendingFriends;
-    }
-
-    public void setPendingFriends(Set<Angler> pendingFriends) {
-        this.pendingFriends = pendingFriends;
-    }
-
-    public Set<Angler> getIncomingFriends() {
-        return incomingFriends;
-    }
-
-    public void setIncomingFriends(Set<Angler> incomingFriends) {
-        this.incomingFriends = incomingFriends;
     }
 }

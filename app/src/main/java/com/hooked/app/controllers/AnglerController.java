@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 
 @CrossOrigin
@@ -39,7 +40,7 @@ public class AnglerController {
         return new ResponseEntity<>(anglerRepository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<?> getAnglerById(@PathVariable Long id) {
         User currentUser = userService.getCurrentUser();
 
@@ -52,7 +53,8 @@ public class AnglerController {
     }
 
     @GetMapping("/self")
-    public @ResponseBody SelfAngler getSelf() {
+    public @ResponseBody
+    SelfAngler getSelf() {
         User currentUser = userService.getCurrentUser();
 
         if (currentUser == null) {
@@ -62,14 +64,34 @@ public class AnglerController {
         return SelfAngler.build(currentAngler);
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<List<Angler>> findByName(@PathVariable String name) {
+    @GetMapping("/name/{name}")
+    public ResponseEntity<List<Angler>> findAnglerByName(@PathVariable String name) {
         User currentUser = userService.getCurrentUser();
 
         if (currentUser == null) {
             return null;
         }
         return new ResponseEntity<>(anglerRepository.findByName(name), HttpStatus.OK);
+    }
+
+    @GetMapping("/location/{location}")
+    public ResponseEntity<List<Angler>> findAnglerByLocation(@PathVariable String location) {
+        User currentUser = userService.getCurrentUser();
+
+        if (currentUser == null) {
+            return null;
+        }
+        return new ResponseEntity<>(anglerRepository.findByLocation(location), HttpStatus.OK);
+    }
+
+    @GetMapping("/status/{status}")
+    public ResponseEntity<List<Angler>> findAnglerByStatus(@PathVariable String status) {
+        User currentUser = userService.getCurrentUser();
+
+        if (currentUser == null) {
+            return null;
+        }
+        return new ResponseEntity<>(anglerRepository.findByStatus(status), HttpStatus.OK);
     }
 
     @PostMapping
@@ -136,18 +158,19 @@ public class AnglerController {
         }
         Angler angler = anglerRepository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
+        if (updates.getAvatar() != null) angler.setAvatar(updates.getAvatar());
         if (updates.getName() != null) angler.setName(updates.getName());
         if (updates.getStatus() != null) angler.setStatus(updates.getStatus());
         if (updates.getBirthday() != null) angler.setBirthday(updates.getBirthday());
         if (updates.getLocation() != null) angler.setLocation(updates.getLocation());
         if (updates.getAbout() != null) angler.setAbout(updates.getAbout());
-        if (updates.getAvatar() != null) angler.setAvatar(updates.getAvatar());
 
         return anglerRepository.save(angler);
     }
 
     @PutMapping("/{id}")
-    public @ResponseBody ResponseEntity<Angler> updateAnglerById(@PathVariable Long id, @RequestBody Angler updates) {
+    public @ResponseBody
+    ResponseEntity<Angler> updateAnglerById(@PathVariable Long id, @RequestBody Angler updates) {
         Angler angler = anglerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         if (updates.getName() != null) angler.setName(updates.getName());
@@ -160,7 +183,8 @@ public class AnglerController {
     }
 
     @PutMapping("/content/{id}")
-    public @ResponseBody Content updateContent(@PathVariable Long id, @RequestBody Content updates) {
+    public @ResponseBody
+    Content updateContent(@PathVariable Long id, @RequestBody Content updates) {
         User currentUser = userService.getCurrentUser();
 
         if (currentUser == null) {

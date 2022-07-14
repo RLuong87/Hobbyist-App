@@ -69,35 +69,50 @@ public class TestController {
         return "WEATHER TEST!";
     }
 
-//    @GetMapping("/{name}")
-//    public ResponseEntity<List<Angler>> findByName(@PathVariable String name) {
+    @GetMapping
+    public ResponseEntity<List<Angler>> getAllAnglers() {
+        return new ResponseEntity<>(anglerRepository.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<List<Angler>> findAnglerByName(@PathVariable String name) {
+        return new ResponseEntity<>(anglerRepository.findByName(name), HttpStatus.OK);
+    }
+
+//    @GetMapping("/query/{query}")
+//    public ResponseEntity<List<Angler>> findAnglerByQuery(@PathVariable String query) {
 //        User currentUser = userService.getCurrentUser();
 //
 //        if (currentUser == null) {
 //            return null;
 //        }
-//        return new ResponseEntity<>(anglerRepository.findByName(name), HttpStatus.OK);
+//
+//        switch (query) {
+//            case "":
+//        }
+//        return new ResponseEntity<>(anglerRepository.findByName(query), HttpStatus.OK);
+//
 //    }
 
-//    @GetMapping("/{location}")
-//    public ResponseEntity<List<Angler>> findByLocation(@PathVariable String location) {
-//        User currentUser = userService.getCurrentUser();
-//
-//        if (currentUser == null) {
-//            return null;
-//        }
-//        return new ResponseEntity<>(anglerRepository.findByLocation(location), HttpStatus.OK);
-//    }
-//
-//    @GetMapping("/{status}")
-//    public ResponseEntity<List<Angler>> findByStatus(@PathVariable String status) {
-//        User currentUser = userService.getCurrentUser();
-//
-//        if (currentUser == null) {
-//            return null;
-//        }
-//        return new ResponseEntity<>(anglerRepository.findByStatus(status), HttpStatus.OK);
-//    }
+    @GetMapping("/location/{location}")
+    public ResponseEntity<List<Angler>> findAnglerByLocation(@PathVariable String location) {
+        User currentUser = userService.getCurrentUser();
+
+        if (currentUser == null) {
+            return null;
+        }
+        return new ResponseEntity<>(anglerRepository.findByLocation(location), HttpStatus.OK);
+    }
+
+    @GetMapping("/status/{status}")
+    public ResponseEntity<List<Angler>> findAnglerByStatus(@PathVariable String status) {
+        User currentUser = userService.getCurrentUser();
+
+        if (currentUser == null) {
+            return null;
+        }
+        return new ResponseEntity<>(anglerRepository.findByStatus(status), HttpStatus.OK);
+    }
 
     @GetMapping("/forecast")
     public ResponseEntity<?> getForecast() {
@@ -130,20 +145,4 @@ public class TestController {
 
         return ResponseEntity.ok(response);
     }
-
-//    @PostMapping("/uploadImage")
-//    public ResponseEntity<Avatar> createAvatar(@RequestBody Avatar avatar) {
-//
-//        User currentUser = userService.getCurrentUser();
-//
-//        if (currentUser == null) {
-//            return null;
-//        }
-//        avatar.setAngler(currentUser);
-//
-//        Avatar avatar1 = avatarRepository.save(avatar);
-//
-//        return new ResponseEntity<>(avatarRepository.save(avatar), HttpStatus.CREATED);
-//    }
-
 }

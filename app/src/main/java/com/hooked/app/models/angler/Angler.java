@@ -17,8 +17,13 @@ import java.util.Set;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Angler {
 
+    @OneToOne
+    @JoinColumn(name = "users_id", referencedColumnName = "id")
+    private User user;
+
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
     private String name;
     private String status;
@@ -29,12 +34,9 @@ public class Angler {
     @OneToOne
     private Avatar avatar;
 
-    @OneToOne
-    @JoinColumn(name = "users_id", referencedColumnName = "id")
-    private User user;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "angler")
-    @JsonIncludeProperties({"angler", "title", "content"})
+    @JsonIncludeProperties({"title", "content"})
     private List<Content> content;
 
     @ManyToMany()
@@ -78,7 +80,6 @@ public class Angler {
     private Set<Angler> incomingRelationships = new HashSet<>();
 
     public Angler() {
-
     }
 
     public Angler(String name, String status, String birthday, String location, String about, Avatar avatar) {
@@ -89,7 +90,6 @@ public class Angler {
         this.about = about;
         this.avatar = avatar;
     }
-
 
     public Long getId() {
         return id;
