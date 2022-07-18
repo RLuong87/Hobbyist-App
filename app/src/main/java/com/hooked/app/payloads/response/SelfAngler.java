@@ -1,38 +1,44 @@
 package com.hooked.app.payloads.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hooked.app.models.angler.Angler;
-
-import java.util.Set;
 
 public class SelfAngler {
 
+    @JsonIgnore
+    private Long id;
     private String name;
     private String status;
     private String birthday;
     private String location;
     private String about;
-    private Set<Angler> friends;
 
-    public SelfAngler(String name, String status, String birthday, String location, String about, Set<Angler> friends) {
+    public SelfAngler(Long id, String name, String status, String birthday, String location, String about) {
+        this.id = id;
         this.name = name;
         this.status = status;
         this.birthday = birthday;
         this.location = location;
         this.about = about;
-        this.friends = friends;
     }
 
     static public SelfAngler build(Angler angler) {
-        Set<Angler> friends = angler.getRelationships();
-        friends.addAll(angler.getInverseRelationships());
         return new SelfAngler(
+                angler.getId(),
                 angler.getName(),
                 angler.getStatus(),
-                angler.getLocation(),
                 angler.getBirthday(),
-                angler.getAbout(),
-                friends
+                angler.getLocation(),
+                angler.getAbout()
         );
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -51,14 +57,6 @@ public class SelfAngler {
         this.status = status;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public String getBirthday() {
         return birthday;
     }
@@ -67,19 +65,19 @@ public class SelfAngler {
         this.birthday = birthday;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     public String getAbout() {
         return about;
     }
 
     public void setAbout(String about) {
         this.about = about;
-    }
-
-    public Set<Angler> getFriends() {
-        return friends;
-    }
-
-    public void setFriends(Set<Angler> friends) {
-        this.friends = friends;
     }
 }

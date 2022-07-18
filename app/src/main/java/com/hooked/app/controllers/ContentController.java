@@ -3,6 +3,7 @@ package com.hooked.app.controllers;
 import com.hooked.app.models.content.Content;
 import com.hooked.app.models.angler.Angler;
 import com.hooked.app.models.auth.User;
+import com.hooked.app.payloads.response.SelfContent;
 import com.hooked.app.repositories.ContentRepository;
 import com.hooked.app.repositories.AnglerRepository;
 import com.hooked.app.repositories.UserRepository;
@@ -21,6 +22,9 @@ import java.util.List;
 public class ContentController {
 
     @Autowired
+    private AnglerRepository anglerRepository;
+
+    @Autowired
     private ContentRepository contentRepository;
 
     @Autowired
@@ -29,6 +33,18 @@ public class ContentController {
     @GetMapping
     public ResponseEntity<Iterable<Content>> getAll() {
         return new ResponseEntity<>(contentRepository.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/selfContent")
+    public @ResponseBody
+    SelfContent getSelfContent() {
+        User currentUser = userService.getCurrentUser();
+
+        if (currentUser == null) {
+            return null;
+        }
+        Angler currentAngler = anglerRepository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return SelfContent.build(currentAngler);
     }
 
     @GetMapping("/customer/{aId}")

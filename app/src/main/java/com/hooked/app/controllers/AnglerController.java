@@ -40,7 +40,7 @@ public class AnglerController {
         return new ResponseEntity<>(anglerRepository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getAnglerById(@PathVariable Long id) {
         User currentUser = userService.getCurrentUser();
 

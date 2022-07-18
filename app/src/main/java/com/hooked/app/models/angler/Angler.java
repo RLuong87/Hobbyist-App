@@ -34,7 +34,6 @@ public class Angler {
     @OneToOne
     private Avatar avatar;
 
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "angler")
     @JsonIncludeProperties({"title", "content"})
     private List<Content> content;
