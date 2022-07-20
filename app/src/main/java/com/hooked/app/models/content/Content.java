@@ -11,11 +11,12 @@ public class Content {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "angler_id", referencedColumnName = "id")
-    @JsonIgnore
+    @JsonIncludeProperties("name")
     private Angler angler;
 
     private String title;
@@ -24,7 +25,8 @@ public class Content {
     public Content() {
     }
 
-    public Content(String title, String content) {
+    public Content(Angler angler, String title, String content) {
+        this.angler = angler;
         this.title = title;
         this.content = content;
     }
