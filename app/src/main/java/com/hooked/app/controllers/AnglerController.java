@@ -9,6 +9,7 @@ import com.hooked.app.payloads.response.SelfAngler;
 import com.hooked.app.repositories.AnglerRepository;
 import com.hooked.app.repositories.AvatarRepository;
 import com.hooked.app.repositories.ContentRepository;
+import com.hooked.app.service.AnglerService;
 import com.hooked.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,9 @@ public class AnglerController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    AnglerService anglerService;
 
     @GetMapping
     public ResponseEntity<List<Angler>> getAllAnglers() {
@@ -66,12 +70,7 @@ public class AnglerController {
 
     @GetMapping("/name/{name}")
     public ResponseEntity<List<Angler>> findAnglerByName(@PathVariable String name) {
-        User currentUser = userService.getCurrentUser();
-
-        if (currentUser == null) {
-            return null;
-        }
-        return new ResponseEntity<>(anglerRepository.findByName(name), HttpStatus.OK);
+        return ResponseEntity.ok(anglerService.findAnglers(name));
     }
 
     @GetMapping("/location/{location}")
