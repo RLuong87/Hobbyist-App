@@ -59,9 +59,9 @@ JWT Configs
 ```bash
   hooked.app.jwtSecret=<secret_key>
 ```
-
-Note: All of these configurations will have to be added to application.properties located inside of the resources folder
-
+ _____
+|Note:| All of these configurations will have to be added to application.properties located inside of the resources folder
+ _____
 # API
 
 Sign Up
