@@ -38,6 +38,10 @@ public class Angler {
     @JsonIncludeProperties({"title", "content"})
     private List<Content> content;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "angler")
+    @JsonIncludeProperties({"comments"})
+    private List<Comments> comments;
+
     @ManyToMany()
     @JoinTable(
             name="relationship",
@@ -81,13 +85,15 @@ public class Angler {
     public Angler() {
     }
 
-    public Angler(String name, String status, String birthday, String location, String about, Avatar avatar) {
+    public Angler(String name, String status, String birthday, String location, String about, Avatar avatar, List<Content> content, List<Comments> comments) {
         this.name = name;
         this.status = status;
         this.birthday = birthday;
         this.location = location;
         this.about = about;
         this.avatar = avatar;
+        this.content = content;
+        this.comments = comments;
     }
 
     public Long getId() {
@@ -192,5 +198,13 @@ public class Angler {
 
     public void setIncomingRelationships(Set<Angler> incomingRelationships) {
         this.incomingRelationships = incomingRelationships;
+    }
+
+    public List<Comments> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comments> comments) {
+        this.comments = comments;
     }
 }

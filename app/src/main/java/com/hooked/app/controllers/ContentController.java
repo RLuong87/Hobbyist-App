@@ -52,9 +52,9 @@ public class ContentController {
         return new ResponseEntity<>(contentRepository.findAllByAngler_id(aId), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable Long id) {
-        contentRepository.deleteById(id);
+    @DeleteMapping("/{cId}")
+    public ResponseEntity<String> deleteContentById(@PathVariable Long cId) {
+        contentRepository.deleteById(cId);
         return new ResponseEntity<>("Deleted", HttpStatus.OK);
     }
 }

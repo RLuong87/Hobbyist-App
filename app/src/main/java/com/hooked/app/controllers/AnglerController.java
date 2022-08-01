@@ -167,20 +167,6 @@ public class AnglerController {
         return anglerRepository.save(angler);
     }
 
-    @PutMapping("/{id}")
-    public @ResponseBody
-    ResponseEntity<Angler> updateAnglerById(@PathVariable Long id, @RequestBody Angler updates) {
-        Angler angler = anglerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-
-        if (updates.getName() != null) angler.setName(updates.getName());
-        if (updates.getStatus() != null) angler.setStatus(updates.getStatus());
-        if (updates.getBirthday() != null) angler.setBirthday(updates.getBirthday());
-        if (updates.getLocation() != null) angler.setLocation(updates.getLocation());
-        if (updates.getAbout() != null) angler.setAbout(updates.getAbout());
-
-        return new ResponseEntity<>(anglerRepository.save(angler), HttpStatus.OK);
-    }
-
     @PutMapping("/content/{id}")
     public @ResponseBody
     Content updateContent(@PathVariable Long id, @RequestBody Content updates) {
@@ -191,7 +177,6 @@ public class AnglerController {
         }
         Content content = contentRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        if (updates.getTitle() != null) content.setTitle(updates.getTitle());
         if (updates.getContent() != null) content.setContent(updates.getContent());
 
         return contentRepository.save(content);
