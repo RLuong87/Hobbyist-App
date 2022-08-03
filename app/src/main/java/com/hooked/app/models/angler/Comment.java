@@ -1,9 +1,11 @@
 package com.hooked.app.models.angler;
 
+import com.hooked.app.models.content.Content;
+
 import javax.persistence.*;
 
 @Entity
-public class Comments {
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,10 +15,14 @@ public class Comments {
     @ManyToOne(fetch = FetchType.LAZY)
     private Angler angler;
 
-    public Comments() {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "content_id")
+    private Content content;
+
+    public Comment() {
     }
 
-    public Comments(String comment, Angler angler) {
+    public Comment(String comment, Angler angler) {
         this.comment = comment;
         this.angler = angler;
     }
@@ -43,5 +49,13 @@ public class Comments {
 
     public void setAngler(Angler angler) {
         this.angler = angler;
+    }
+
+    public Content getContent() {
+        return content;
+    }
+
+    public void setContent(Content content) {
+        this.content = content;
     }
 }

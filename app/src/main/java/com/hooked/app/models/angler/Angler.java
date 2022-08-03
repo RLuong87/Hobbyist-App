@@ -39,8 +39,8 @@ public class Angler {
     private List<Content> content;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "angler")
-    @JsonIncludeProperties({"comments"})
-    private List<Comments> comments;
+    @JsonIncludeProperties({"comment"})
+    private List<Comment> comments;
 
     @ManyToMany()
     @JoinTable(
@@ -85,7 +85,7 @@ public class Angler {
     public Angler() {
     }
 
-    public Angler(String name, String status, String birthday, String location, String about, Avatar avatar, List<Content> content, List<Comments> comments) {
+    public Angler(String name, String status, String birthday, String location, String about, Avatar avatar, List<Content> content, List<Comment> comments) {
         this.name = name;
         this.status = status;
         this.birthday = birthday;
@@ -200,11 +200,11 @@ public class Angler {
         this.incomingRelationships = incomingRelationships;
     }
 
-    public List<Comments> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(List<Comments> comments) {
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 }

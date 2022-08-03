@@ -1,12 +1,16 @@
 package com.hooked.app.controllers;
 
 import com.hooked.app.models.angler.Angler;
+import com.hooked.app.models.angler.Comment;
 import com.hooked.app.models.auth.User;
 import com.hooked.app.models.avatar.Avatar;
+import com.hooked.app.models.content.Content;
 import com.hooked.app.payloads.api.response.StormGlass;
 import com.hooked.app.payloads.api.response.WeatherAPI;
 import com.hooked.app.repositories.AnglerRepository;
 import com.hooked.app.repositories.AvatarRepository;
+import com.hooked.app.repositories.CommentRepository;
+import com.hooked.app.repositories.ContentRepository;
 import com.hooked.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -31,6 +36,12 @@ public class TestController {
 
     @Autowired
     private AvatarRepository avatarRepository;
+
+    @Autowired
+    private ContentRepository contentRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
 
     @Autowired
     private UserService userService;
@@ -93,6 +104,19 @@ public class TestController {
 //        return new ResponseEntity<>(anglerRepository.findByName(query), HttpStatus.OK);
 //
 //    }
+
+    @PostMapping("/comment")
+    public ResponseEntity<Comment> createComment(@RequestBody Comment comment) {
+        User currentUser = userService.getCurrentUser();
+
+        if (currentUser == null) {
+            return null;
+        }
+        Angler currentAngler = anglerRepository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        comment.setAngler(currentAngler);
+
+        return new ResponseEntity<>(commentRepository.save(comment), HttpStatus.CREATED);
+    }
 
     @GetMapping("/location/{location}")
     public ResponseEntity<List<Angler>> findAnglerByLocation(@PathVariable String location) {

@@ -1,5 +1,6 @@
 package com.hooked.app.controllers;
 
+import com.hooked.app.models.angler.Comment;
 import com.hooked.app.models.auth.User;
 import com.hooked.app.models.angler.Angler;
 import com.hooked.app.models.avatar.Avatar;
@@ -121,6 +122,13 @@ public class AnglerController {
 
         return new ResponseEntity<>(contentRepository.save(content), HttpStatus.CREATED);
     }
+
+//    @PostMapping("/comment/{cId}")
+//    public ResponseEntity<Comment> createComment(@RequestBody Angler comment, @PathVariable Long cId) {
+//        User currentUser = userService.getCurrentUser();
+//    }
+
+
 
     @PostMapping("/uploadAvatar")
     public ResponseEntity<Avatar> createAvatar(@RequestBody Avatar avatar) {
