@@ -19,6 +19,8 @@ public class Avatar {
     private Long id;
     private String url;
 
+    private byte [] content;
+
     @OneToOne
     private Angler angler;
 
@@ -52,5 +54,13 @@ public class Avatar {
 
     public void setAngler(Angler angler) {
         this.angler = angler;
+    }
+
+    public byte[] getContent() {
+        return content;
+    }
+
+    public void setContent(byte[] content) {
+        this.content = content;
     }
 }

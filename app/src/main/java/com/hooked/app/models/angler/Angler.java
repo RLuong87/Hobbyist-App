@@ -32,6 +32,7 @@ public class Angler {
     private String about;
 
     @OneToOne
+    @JsonIncludeProperties({"url"})
     private Avatar avatar;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "angler")

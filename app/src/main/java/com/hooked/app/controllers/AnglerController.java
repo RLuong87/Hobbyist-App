@@ -1,6 +1,5 @@
 package com.hooked.app.controllers;
 
-import com.hooked.app.models.angler.Comment;
 import com.hooked.app.models.auth.User;
 import com.hooked.app.models.angler.Angler;
 import com.hooked.app.models.avatar.Avatar;
@@ -94,6 +93,11 @@ public class AnglerController {
         return new ResponseEntity<>(anglerRepository.findByStatus(status), HttpStatus.OK);
     }
 
+    @GetMapping("/getAllAvatars")
+    public ResponseEntity<List<Avatar>> getAllAvatars() {
+        return new ResponseEntity<>(avatarRepository.findAll(), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<SelfAngler> createAngler(@RequestBody Angler newAngler) {
 
@@ -129,7 +133,6 @@ public class AnglerController {
 //    }
 
 
-
     @PostMapping("/uploadAvatar")
     public ResponseEntity<Avatar> createAvatar(@RequestBody Avatar avatar) {
         User currentUser = userService.getCurrentUser();
@@ -157,7 +160,8 @@ public class AnglerController {
     }
 
     @PutMapping
-    public @ResponseBody Angler updateAngler(@RequestBody Angler updates) {
+    public @ResponseBody
+    Angler updateAngler(@RequestBody Angler updates) {
         User currentUser = userService.getCurrentUser();
 
         if (currentUser == null) {

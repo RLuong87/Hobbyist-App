@@ -17,10 +17,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
 import java.util.List;
 
 @CrossOrigin
@@ -169,4 +172,10 @@ public class TestController {
 
         return ResponseEntity.ok(response);
     }
+
+
+//    @PostMapping("/upload")
+//    public String fileUpload(@RequestParam("file")MultipartFile file, Model model) throws IOException {
+//
+//    }
 }

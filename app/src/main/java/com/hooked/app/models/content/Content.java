@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import com.hooked.app.models.angler.Angler;
 import com.hooked.app.models.angler.Comment;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.core.annotation.Order;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
