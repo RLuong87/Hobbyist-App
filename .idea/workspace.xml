@@ -5,15 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60f9e1f6-f004-4218-91d7-a44fd389fc7f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules/app.app.test~1.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/response/PublicContent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/service/AvatarService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/AnglerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/AnglerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/ContentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/ContentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/TestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/models/angler/Angler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/models/angler/Angler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/models/angler/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/models/angler/Comment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/models/avatar/Avatar.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/models/avatar/Avatar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/models/content/Content.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/models/content/Content.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/security/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/response/FriendAngler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/response/FriendAngler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/response/PublicAngler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/response/PublicAngler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/response/SelfContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/response/SelfContent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/repositories/ContentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/repositories/ContentRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,8 +53,8 @@
       <list>
         <option value="AnnotationType" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>

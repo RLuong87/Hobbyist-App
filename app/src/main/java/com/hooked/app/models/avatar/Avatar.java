@@ -1,25 +1,18 @@
 package com.hooked.app.models.avatar;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.hooked.app.models.angler.Angler;
-import com.hooked.app.models.auth.User;
 
 import javax.persistence.*;
 
 @Entity
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id"
-)
 public class Avatar {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String url;
-
-    private byte [] content;
+    private Long size;
+    private byte[] content;
 
     @OneToOne
     private Angler angler;
@@ -46,6 +39,14 @@ public class Avatar {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public Long getSize() {
+        return size;
+    }
+
+    public void setSize(Long size) {
+        this.size = size;
     }
 
     public Angler getAngler() {

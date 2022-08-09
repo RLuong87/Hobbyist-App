@@ -23,7 +23,6 @@ public class Angler {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     private Long id;
     private String name;
     private String status;

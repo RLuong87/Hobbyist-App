@@ -2,38 +2,39 @@ package com.hooked.app.payloads.response;
 
 import com.hooked.app.models.angler.Angler;
 import com.hooked.app.models.avatar.Avatar;
+import com.hooked.app.models.content.Content;
+
+import java.util.List;
 
 public class PublicAngler {
-    private Long id;
     private Avatar avatar;
     private String name;
+    private String status;
+    private String birthday;
     private String location;
     private String about;
+    private List<Content> content;
 
-    public PublicAngler(Long id, Avatar avatar, String name, String location, String about) {
-        this.id = id;
+    public PublicAngler(Avatar avatar, String name, String status, String birthday, String location, String about, List<Content> content) {
         this.avatar = avatar;
         this.name = name;
+        this.status = status;
+        this.birthday = birthday;
         this.location = location;
         this.about = about;
+        this.content = content;
     }
 
     static public PublicAngler build(Angler angler) {
         return new PublicAngler(
-                angler.getId(),
                 angler.getAvatar(),
                 angler.getName(),
+                angler.getStatus(),
+                angler.getBirthday(),
                 angler.getLocation(),
-                angler.getAbout()
+                angler.getAbout(),
+                angler.getContent()
         );
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -66,5 +67,29 @@ public class PublicAngler {
 
     public void setAbout(String about) {
         this.about = about;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public List<Content> getContent() {
+        return content;
+    }
+
+    public void setContent(List<Content> content) {
+        this.content = content;
     }
 }

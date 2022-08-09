@@ -10,4 +10,5 @@ public interface ContentRepository extends JpaRepository<Content, Long> {
 
     List<Content> findAllByAngler_id(Long id);
 
+
 }

@@ -5,32 +5,21 @@ import com.hooked.app.models.content.Content;
 
 import java.util.List;
 
-public class SelfContent {
+public class PublicContent {
 
-    private Long id;
     private String name;
     private List<Content> content;
 
-    public SelfContent(Long id, String name, List<Content> content) {
-        this.id = id;
+    public PublicContent(String name, List<Content> content) {
         this.name = name;
         this.content = content;
     }
 
-    static public SelfContent build(Angler angler) {
-        return new SelfContent(
-                angler.getId(),
+    static public PublicContent build(Angler angler) {
+        return new PublicContent(
                 angler.getName(),
                 angler.getContent()
         );
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

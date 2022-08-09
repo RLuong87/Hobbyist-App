@@ -6,7 +6,6 @@ import com.hooked.app.models.auth.User;
 import com.hooked.app.payloads.response.SelfContent;
 import com.hooked.app.repositories.ContentRepository;
 import com.hooked.app.repositories.AnglerRepository;
-import com.hooked.app.repositories.UserRepository;
 import com.hooked.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,6 +48,13 @@ public class ContentController {
 
     @GetMapping("/customer/{aId}")
     public ResponseEntity<List<Content>> getByAnglerId(@PathVariable Long aId) {
+        User currentUser = userService.getCurrentUser();
+
+        if (currentUser == null) {
+            return null;
+        }
+        Angler angler = anglerRepository.findById(aId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
         return new ResponseEntity<>(contentRepository.findAllByAngler_id(aId), HttpStatus.OK);
     }
 

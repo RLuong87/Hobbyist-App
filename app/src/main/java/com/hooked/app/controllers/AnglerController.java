@@ -1,5 +1,6 @@
 package com.hooked.app.controllers;
 
+import com.hooked.app.models.angler.Comment;
 import com.hooked.app.models.auth.User;
 import com.hooked.app.models.angler.Angler;
 import com.hooked.app.models.avatar.Avatar;
@@ -8,6 +9,7 @@ import com.hooked.app.payloads.response.PublicAngler;
 import com.hooked.app.payloads.response.SelfAngler;
 import com.hooked.app.repositories.AnglerRepository;
 import com.hooked.app.repositories.AvatarRepository;
+import com.hooked.app.repositories.CommentRepository;
 import com.hooked.app.repositories.ContentRepository;
 import com.hooked.app.service.AnglerService;
 import com.hooked.app.service.UserService;
@@ -29,6 +31,9 @@ public class AnglerController {
 
     @Autowired
     private ContentRepository contentRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
 
     @Autowired
     private AvatarRepository avatarRepository;
@@ -127,10 +132,18 @@ public class AnglerController {
         return new ResponseEntity<>(contentRepository.save(content), HttpStatus.CREATED);
     }
 
-//    @PostMapping("/comment/{cId}")
-//    public ResponseEntity<Comment> createComment(@RequestBody Angler comment, @PathVariable Long cId) {
-//        User currentUser = userService.getCurrentUser();
-//    }
+    @PostMapping("/comment")
+    public ResponseEntity<Comment> createComment(@RequestBody Comment comment) {
+        User currentUser = userService.getCurrentUser();
+
+        if (currentUser == null) {
+            return null;
+        }
+        Angler currentAngler = anglerRepository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        comment.setAngler(currentAngler);
+
+        return new ResponseEntity<>(commentRepository.save(comment), HttpStatus.CREATED);
+    }
 
 
     @PostMapping("/uploadAvatar")

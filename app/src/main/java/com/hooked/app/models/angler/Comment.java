@@ -1,8 +1,10 @@
 package com.hooked.app.models.angler;
 
 import com.hooked.app.models.content.Content;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Comment {
@@ -11,6 +13,9 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String comment;
+
+    @CreationTimestamp
+    private LocalDateTime localDateTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Angler angler;
@@ -57,5 +62,13 @@ public class Comment {
 
     public void setContent(Content content) {
         this.content = content;
+    }
+
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
+    }
+
+    public void setLocalDateTime(LocalDateTime localDateTime) {
+        this.localDateTime = localDateTime;
     }
 }

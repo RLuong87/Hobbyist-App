@@ -3,28 +3,28 @@ package com.hooked.app.payloads.response;
 import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import com.hooked.app.models.angler.Angler;
 import com.hooked.app.models.avatar.Avatar;
+import com.hooked.app.models.content.Content;
 
+import java.util.List;
 import java.util.Set;
 
 public class FriendAngler extends PublicAngler {
     @JsonIncludeProperties({"id", "name"})
     private Set<Angler> friends;
 
-    public FriendAngler(Long id, Avatar avatar, String name, String location, String about, Set<Angler> friends) {
-        super(id, avatar, name, location, about);
+    public FriendAngler(Avatar avatar, String name, String status, String birthday, String location, String about, List<Content> content) {
+        super(avatar, name, status, birthday, location, about, content);
     }
 
-
     static public FriendAngler build(Angler angler) {
-        Set<Angler> friends = angler.getRelationships();
-        friends.addAll(angler.getInverseRelationships());
         return new FriendAngler(
-                angler.getId(),
                 angler.getAvatar(),
                 angler.getName(),
+                angler.getStatus(),
+                angler.getBirthday(),
                 angler.getLocation(),
                 angler.getAbout(),
-                friends
+                angler.getContent()
         );
     }
 
