@@ -189,40 +189,40 @@ public class TestController {
         return "index";
     }
 
-    @PostMapping("/upload")
-    public String fileUpload(@RequestParam("file") MultipartFile file, Model model) throws IOException {
-        Avatar avatar = new Avatar();
-        String fileName = file.getOriginalFilename();
-        avatar.setUrl(fileName);
-        avatar.setContent(file.getBytes());
-        avatar.setSize(file.getSize());
-        avatarService.createAvatar(avatar);
-        model.addAttribute("success", "File Uploaded Successfully!!!");
-        return "index";
-    }
+//    @PostMapping("/upload")
+//    public String fileUpload(@RequestParam("file") MultipartFile file, Model model) throws IOException {
+//        Avatar avatar = new Avatar();
+//        String fileName = file.getOriginalFilename();
+//        avatar.setUrl(fileName);
+//        avatar.setContent(file.getBytes());
+//        avatar.setSize(file.getSize());
+//        avatarService.createAvatar(avatar);
+//        model.addAttribute("success", "File Uploaded Successfully!!!");
+//        return "index";
+//    }
 
-    @GetMapping("/downloadfile")
-    public void downloadFile(@Param("id") Long id, Model model, HttpServletResponse response) throws IOException {
-        Optional<Avatar> temp = avatarService.findAvatarById(id);
-        if (temp.isPresent()) {
-            Avatar avatar = temp.get();
-            response.setContentType("application/octet-stream");
-            String headerKey = "Content-Disposition";
-            String headerValue = "attachment; filename = " + avatar.getUrl();
-            response.setHeader(headerKey, headerValue);
-            ServletOutputStream outputStream = response.getOutputStream();
-            outputStream.write(avatar.getContent());
-            outputStream.close();
-        }
-    }
+//    @GetMapping("/downloadfile")
+//    public void downloadFile(@Param("id") Long id, Model model, HttpServletResponse response) throws IOException {
+//        Optional<Avatar> temp = avatarService.findAvatarById(id);
+//        if (temp.isPresent()) {
+//            Avatar avatar = temp.get();
+//            response.setContentType("application/octet-stream");
+//            String headerKey = "Content-Disposition";
+//            String headerValue = "attachment; filename = " + avatar.getUrl();
+//            response.setHeader(headerKey, headerValue);
+//            ServletOutputStream outputStream = response.getOutputStream();
+//            outputStream.write(avatar.getContent());
+//            outputStream.close();
+//        }
+//    }
 
-    @GetMapping("/image")
-    public void showImage(@Param("id") Long id, HttpServletResponse response, Optional<Avatar> avatar)
-            throws ServletException, IOException {
-
-        avatar = avatarService.findAvatarById(id);
-        response.setContentType("image/jpeg, image/jpg, image/png, image/gif, image/pdf");
-        response.getOutputStream().write(avatar.get().getContent());
-        response.getOutputStream().close();
-    }
+//    @GetMapping("/image")
+//    public void showImage(@Param("id") Long id, HttpServletResponse response, Optional<Avatar> avatar)
+//            throws ServletException, IOException {
+//
+//        avatar = avatarService.findAvatarById(id);
+//        response.setContentType("image/jpeg, image/jpg, image/png, image/gif, image/pdf");
+//        response.getOutputStream().write(avatar.get().getContent());
+//        response.getOutputStream().close();
+//    }
 }

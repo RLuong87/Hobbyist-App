@@ -1,20 +1,18 @@
 package com.hooked.app.payloads.response;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hooked.app.models.angler.Angler;
 
 public class SelfAngler {
 
-    @JsonIgnore
-    private Long id;
+    private String avatar;
     private String name;
     private String status;
     private String birthday;
     private String location;
     private String about;
 
-    public SelfAngler(Long id, String name, String status, String birthday, String location, String about) {
-        this.id = id;
+    public SelfAngler(String avatar, String name, String status, String birthday, String location, String about) {
+        this.avatar = avatar;
         this.name = name;
         this.status = status;
         this.birthday = birthday;
@@ -24,7 +22,7 @@ public class SelfAngler {
 
     static public SelfAngler build(Angler angler) {
         return new SelfAngler(
-                angler.getId(),
+                angler.getAvatar(),
                 angler.getName(),
                 angler.getStatus(),
                 angler.getBirthday(),
@@ -33,12 +31,12 @@ public class SelfAngler {
         );
     }
 
-    public Long getId() {
-        return id;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getName() {

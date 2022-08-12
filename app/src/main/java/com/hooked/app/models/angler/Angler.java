@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Angler {
 
     @OneToOne
@@ -24,15 +23,12 @@ public class Angler {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
+    private String avatar;
     private String name;
     private String status;
     private String birthday;
     private String location;
     private String about;
-
-    @OneToOne
-    @JsonIncludeProperties({"url"})
-    private Avatar avatar;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "angler")
     @JsonIncludeProperties({"title", "content"})
@@ -85,13 +81,13 @@ public class Angler {
     public Angler() {
     }
 
-    public Angler(String name, String status, String birthday, String location, String about, Avatar avatar, List<Content> content, List<Comment> comments) {
+    public Angler(String avatar, String name, String status, String birthday, String location, String about, List<Content> content, List<Comment> comments) {
+        this.avatar = avatar;
         this.name = name;
         this.status = status;
         this.birthday = birthday;
         this.location = location;
         this.about = about;
-        this.avatar = avatar;
         this.content = content;
         this.comments = comments;
     }
@@ -103,6 +99,8 @@ public class Angler {
     public void setId(Long id) {
         this.id = id;
     }
+
+
 
     public String getName() {
         return name;
@@ -128,11 +126,11 @@ public class Angler {
         this.user = user;
     }
 
-    public Avatar getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(Avatar avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 

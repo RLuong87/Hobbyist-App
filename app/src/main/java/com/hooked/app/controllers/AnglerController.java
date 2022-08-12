@@ -61,6 +61,16 @@ public class AnglerController {
         return new ResponseEntity<>(PublicAngler.build(angler), HttpStatus.OK);
     }
 
+    @GetMapping("/avatar/{id}")
+    public ResponseEntity<?> getAvatarById(@PathVariable Long id) {
+        User currentUser = userService.getCurrentUser();
+
+        if (currentUser == null) {
+            return null;
+        }
+        return new ResponseEntity<>(avatarRepository.findById(id), HttpStatus.OK);
+    }
+
     @GetMapping("/self")
     public @ResponseBody
     SelfAngler getSelf() {
@@ -145,36 +155,34 @@ public class AnglerController {
         return new ResponseEntity<>(commentRepository.save(comment), HttpStatus.CREATED);
     }
 
+//    @PostMapping("/uploadAvatar")
+//    public ResponseEntity<Avatar> createAvatar(@RequestBody Avatar avatar) {
+//        User currentUser = userService.getCurrentUser();
+//
+//        if (currentUser == null) {
+//            return null;
+//        }
+//        Angler currentAngler = anglerRepository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+//        avatar.setAngler(currentAngler);
+//
+//        return new ResponseEntity<>(avatarRepository.save(avatar), HttpStatus.CREATED);
+//    }
 
-    @PostMapping("/uploadAvatar")
-    public ResponseEntity<Avatar> createAvatar(@RequestBody Avatar avatar) {
-        User currentUser = userService.getCurrentUser();
-
-        if (currentUser == null) {
-            return null;
-        }
-        Angler currentAngler = anglerRepository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        avatar.setAngler(currentAngler);
-
-        return new ResponseEntity<>(avatarRepository.save(avatar), HttpStatus.CREATED);
-    }
-
-    @PutMapping("/updateAvatar")
-    public ResponseEntity<Avatar> updateAvatar(@RequestBody Avatar avatar) {
-        User currentUser = userService.getCurrentUser();
-
-        if (currentUser == null) {
-            return null;
-        }
-        Angler currentAngler = anglerRepository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        avatar.setAngler(currentAngler);
-
-        return new ResponseEntity<>(avatarRepository.save(avatar), HttpStatus.CREATED);
-    }
+//    @PutMapping("/updateAvatar")
+//    public ResponseEntity<Avatar> updateAvatar(@RequestBody Avatar avatar) {
+//        User currentUser = userService.getCurrentUser();
+//
+//        if (currentUser == null) {
+//            return null;
+//        }
+//        Angler currentAngler = anglerRepository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+//        avatar.setAngler(currentAngler);
+//
+//        return new ResponseEntity<>(avatarRepository.save(avatar), HttpStatus.CREATED);
+//    }
 
     @PutMapping
-    public @ResponseBody
-    Angler updateAngler(@RequestBody Angler updates) {
+    public @ResponseBody Angler updateAngler(@RequestBody Angler updates) {
         User currentUser = userService.getCurrentUser();
 
         if (currentUser == null) {

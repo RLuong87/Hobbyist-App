@@ -12,7 +12,7 @@ public class FriendAngler extends PublicAngler {
     @JsonIncludeProperties({"id", "name"})
     private Set<Angler> friends;
 
-    public FriendAngler(Avatar avatar, String name, String status, String birthday, String location, String about, List<Content> content) {
+    public FriendAngler(String avatar, String name, String status, String birthday, String location, String about, List<Content> content) {
         super(avatar, name, status, birthday, location, about, content);
     }
 

@@ -1,13 +1,12 @@
 package com.hooked.app.payloads.response;
 
 import com.hooked.app.models.angler.Angler;
-import com.hooked.app.models.avatar.Avatar;
 import com.hooked.app.models.content.Content;
 
 import java.util.List;
 
 public class PublicAngler {
-    private Avatar avatar;
+    private String avatar;
     private String name;
     private String status;
     private String birthday;
@@ -15,7 +14,7 @@ public class PublicAngler {
     private String about;
     private List<Content> content;
 
-    public PublicAngler(Avatar avatar, String name, String status, String birthday, String location, String about, List<Content> content) {
+    public PublicAngler(String avatar, String name, String status, String birthday, String location, String about, List<Content> content) {
         this.avatar = avatar;
         this.name = name;
         this.status = status;
@@ -45,11 +44,11 @@ public class PublicAngler {
         this.name = name;
     }
 
-    public Avatar getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(Avatar avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 
