@@ -210,6 +210,7 @@ public class AnglerController {
         }
         Content content = contentRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
+        if (updates.getPicture() != null) content.setPicture(updates.getPicture());
         if (updates.getContent() != null) content.setContent(updates.getContent());
 
         return contentRepository.save(content);

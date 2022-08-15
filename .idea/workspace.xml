@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60f9e1f6-f004-4218-91d7-a44fd389fc7f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/models/passwordreset/PasswordResetToken.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/AnglerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/AnglerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/controllers/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/models/angler/Angler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/models/angler/Angler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/models/avatar/Avatar.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/models/avatar/Avatar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/response/FriendAngler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/response/FriendAngler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/response/PublicAngler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/response/PublicAngler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/response/SelfAngler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/response/SelfAngler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/repositories/AvatarRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/repositories/AvatarRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/models/content/Content.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/models/content/Content.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/response/JwtResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hooked/app/payloads/response/JwtResponse.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

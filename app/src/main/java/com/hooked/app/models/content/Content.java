@@ -18,12 +18,13 @@ public class Content {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "angler_id", referencedColumnName = "id")
-    @JsonIncludeProperties("name")
+    @JsonIncludeProperties({"avatar", "name"})
     private Angler angler;
 
     @CreationTimestamp
     private LocalDateTime localDateTime;
 
+    private String picture;
     private String content;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "content",
@@ -33,8 +34,10 @@ public class Content {
     public Content() {
     }
 
-    public Content(Angler angler, String content, List<Comment> comments) {
+    public Content(Angler angler, LocalDateTime localDateTime, String picture, String content, List<Comment> comments) {
         this.angler = angler;
+        this.localDateTime = localDateTime;
+        this.picture = picture;
         this.content = content;
         this.comments = comments;
     }
@@ -53,6 +56,14 @@ public class Content {
 
     public void setAngler(Angler angler) {
         this.angler = angler;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public String getContent() {
