@@ -24,6 +24,11 @@ public class Approve {
     public Approve() {
     }
 
+    public Approve(Angler angler, Content content) {
+        this.angler = angler;
+        this.content = content;
+    }
+
     public Long getId() {
         return id;
     }

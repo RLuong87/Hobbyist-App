@@ -1,9 +1,11 @@
 package com.hooked.app.controllers;
 
+import com.hooked.app.models.approve.Approve;
 import com.hooked.app.models.content.Content;
 import com.hooked.app.models.angler.Angler;
 import com.hooked.app.models.auth.User;
 import com.hooked.app.payloads.response.SelfContent;
+import com.hooked.app.repositories.ApproveRepository;
 import com.hooked.app.repositories.ContentRepository;
 import com.hooked.app.repositories.AnglerRepository;
 import com.hooked.app.service.UserService;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -28,6 +31,9 @@ public class ContentController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    ApproveRepository approveRepository;
 
     @GetMapping
     public ResponseEntity<Iterable<Content>> getAll() {
@@ -53,9 +59,21 @@ public class ContentController {
         if (currentUser == null) {
             return null;
         }
-        Angler angler = anglerRepository.findById(aId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         return new ResponseEntity<>(contentRepository.findAllByAngler_id(aId), HttpStatus.OK);
+    }
+
+    @PostMapping("/like/{id}")
+    public ResponseEntity<Content> likeById(@PathVariable Long id, @RequestBody Angler angler) {
+        Optional<Content> content = contentRepository.findById(id);
+
+        if (content.isEmpty()) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+        Approve newApproval = new Approve(angler, content.get());
+        approveRepository.save(newApproval);
+        return new ResponseEntity<>(content.get(), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{cId}")

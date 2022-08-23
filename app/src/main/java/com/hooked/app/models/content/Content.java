@@ -3,11 +3,13 @@ package com.hooked.app.models.content;
 import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import com.hooked.app.models.angler.Angler;
 import com.hooked.app.models.angler.Comment;
+import com.hooked.app.models.approve.Approve;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Content {
@@ -16,9 +18,9 @@ public class Content {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "angler_id", referencedColumnName = "id")
-    @JsonIncludeProperties({"avatar", "name"})
+    @JsonIncludeProperties({"id", "avatar", "name"})
     private Angler angler;
 
     @CreationTimestamp
@@ -26,6 +28,10 @@ public class Content {
 
     private String picture;
     private String content;
+
+    @OneToMany(mappedBy = "content", fetch = FetchType.LAZY)
+    @JsonIncludeProperties("angler")
+    private Set<Approve> approvals;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "content",
             cascade = CascadeType.ALL)
@@ -88,5 +94,13 @@ public class Content {
 
     public void setLocalDateTime(LocalDateTime localDateTime) {
         this.localDateTime = localDateTime;
+    }
+
+    public Set<Approve> getApprovals() {
+        return approvals;
+    }
+
+    public void setApprovals(Set<Approve> approvals) {
+        this.approvals = approvals;
     }
 }

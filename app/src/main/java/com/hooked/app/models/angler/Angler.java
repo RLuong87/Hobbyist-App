@@ -3,6 +3,7 @@ package com.hooked.app.models.angler;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+import com.hooked.app.models.approve.Approve;
 import com.hooked.app.models.avatar.Avatar;
 import com.hooked.app.models.content.Content;
 import com.hooked.app.models.auth.User;
@@ -37,6 +38,10 @@ public class Angler {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "angler")
     @JsonIncludeProperties({"comment"})
     private List<Comment> comments;
+
+    @OneToMany(mappedBy = "angler", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Approve> approvals;
 
     @ManyToMany()
     @JoinTable(
@@ -204,5 +209,13 @@ public class Angler {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public Set<Approve> getApprovals() {
+        return approvals;
+    }
+
+    public void setApprovals(Set<Approve> approvals) {
+        this.approvals = approvals;
     }
 }
