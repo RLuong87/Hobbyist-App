@@ -26,9 +26,11 @@ import java.util.List;
 @RequestMapping("/api/customers")
 public class AnglerController {
 
-    //TODO: Create a method to allow users to like content, their own or their friends
+    //TODO: Create a method to allow users to like content, their own and their friends
     //TODO: Must have: friending system, request, accept, block ---> Nice to have: follow a user
-    //TODO: Create a method to allow a user to comment on content
+    //TODO: Create a method to allow a user to comment on content, their own and their friends
+    //TODO: Implement Google Maps API to allow users to shar their location
+    //TODO: Give users a way to check ocean tides
 
     @Autowired
     private AnglerRepository anglerRepository;
