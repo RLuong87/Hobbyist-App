@@ -12,4 +12,7 @@ public interface ContentRepository extends JpaRepository<Content, Long> {
 //    @Query("SELECT Content FROM Angler ORDER BY local_data_time ASC")
     List<Content> findAllByAngler_id(Long id);
 
+//    List<Content> findByOrderByIdAsc();
+//
+//    List<Content> findByOrderByIdAsc(Long id);
 }

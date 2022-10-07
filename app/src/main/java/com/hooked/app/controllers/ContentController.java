@@ -10,6 +10,7 @@ import com.hooked.app.repositories.ContentRepository;
 import com.hooked.app.repositories.AnglerRepository;
 import com.hooked.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,12 +43,13 @@ public class ContentController {
 
     @GetMapping("/selfContent")
     public @ResponseBody
-    SelfContent getSelfContent() {
+    SelfContent getSelfContent(Content content) {
         User currentUser = userService.getCurrentUser();
 
         if (currentUser == null) {
             return null;
         }
+//        Content selfContent = (Content) contentRepository.findByOrderByIdAsc(content.getId());
         Angler currentAngler = anglerRepository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return SelfContent.build(currentAngler);
     }

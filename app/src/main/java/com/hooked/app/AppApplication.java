@@ -38,15 +38,15 @@ public class AppApplication {
         SpringApplication.run(AppApplication.class, args);
     }
 
-    @Bean
-    public WebMvcConfigurer configurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowCredentials(true).allowedOrigins("*").allowedMethods("*");
-            }
-        };
-    }
+//    @Bean
+//    public WebMvcConfigurer configurer() {
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                registry.addMapping("/**").allowCredentials(true).allowedOrigins("*").allowedMethods("*");
+//            }
+//        };
+//    }
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
